@@ -30,8 +30,10 @@ public class QALegendHomePage {
 	WebElement clockOutNotesSaveButton;
 	@FindBy(xpath = "//a[@title='Clock In']") 
 	WebElement clockInButton;
-	@FindBy(xpath = "((//div[@class='widget-details'])[1]")
+	@FindBy(xpath = "((//div[@class='panel-body '])[1]//child::div)[2]")
 	WebElement clockOutClockInPanel;
+	@FindBy(xpath = "((//div[@class='panel-body '])[1]//child::div)[2]//child::div")
+	WebElement clockedInText;
 	@FindBy(xpath = "//span[text()='Time cards']")
 	WebElement timeCardButton;
 	@FindBy(xpath = "//span[text()='Leave']")
@@ -83,6 +85,7 @@ WebElement teamMembersButton;
  //Clock In Clock Out Operations
  public boolean clockOutDisplayedOrNot()
  {
+	 WaitUtility.waitForElementToBePresent(driver, clockOutClockInPanel);
 	if(PageUtility.getTextFromElement(clockOutClockInPanel).contains("Clock Out"))
 	{
 		return true;
@@ -95,13 +98,14 @@ WebElement teamMembersButton;
 	public String getTextFromClockOutClockInPanel() 
 	{
 		WaitUtility.waitForElementToBePresent(driver, clockOutClockInPanel);
-		return PageUtility.getTextFromElement(clockOutClockInPanel);
+		return PageUtility.getTextFromElement(clockedInText);
 	}
  
  public void clickOnClockOut()
  {
 	 WaitUtility.waitForElementToBeClickable(driver, clockOutButton);
 	 PageUtility.clickOnElement(clockOutButton);
+	 
  }
  public String enterNotesInClockOutPopUp(String excelFilePath) throws IOException
  {
@@ -114,12 +118,14 @@ public void saveNotesInClockOutPopUp()
 {
 	WaitUtility.waitForElementToBeClickable(driver, clockOutNotesSaveButton);
 	PageUtility.clickOnElement(clockOutNotesSaveButton);
+	PageUtility.pageRefresh(driver);
 }
 
 public void clickOnClockIn() 
 {
 	WaitUtility.waitForElementToBeClickable(driver, clockInButton);
 	PageUtility.clickOnElement(clockInButton);
+	PageUtility.pageRefresh(driver);
 }
 
 public void clickOnTimeCardButton()

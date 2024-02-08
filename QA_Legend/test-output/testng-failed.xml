@@ -10,7 +10,7 @@
       <class name="testCases.QALegendTestCases">
         <methods>
           <include name="initialization"/>
-          <include name="addInvoiceAndPerformPayment"/>
+          <include name="messageInCRM"/>
         </methods>
       </class> <!-- testCases.QALegendTestCases -->
     </classes>

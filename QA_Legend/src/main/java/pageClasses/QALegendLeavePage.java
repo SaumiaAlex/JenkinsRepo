@@ -22,7 +22,7 @@ public class QALegendLeavePage {
 WebElement applyLeaveButton;
 @FindBy(xpath = "(//a[@class='btn btn-default'])[2]")
 WebElement assignLeaveButton;
-@FindBy(xpath = "//div[@class='select2-container select2 validate-hidden']")//(xpath = "//div[@class='select2-search']")
+@FindBy(xpath = "(//div[@class='select2-container select2 validate-hidden'])[1]")//(xpath = "//div[@class='select2-search']")
 WebElement leaveTypeDropDown;
 @FindBy(xpath = "(//div[@class='select2-result-label'])[2]")//select2-result-label-10
 WebElement casualLeave;

@@ -106,28 +106,38 @@ public class QALegendTestCases extends BaseClass
 	{
 		String expectedNotes;
 		String expectedStatus;
+		String status;
 		if(homePage.clockOutDisplayedOrNot() == true)
 		{
 			homePage.clickOnClockOut();
 			expectedNotes = homePage.enterNotesInClockOutPopUp(excelFilePath);
 			homePage.saveNotesInClockOutPopUp();
 			System.out.println(expectedNotes);
-			 
+			 status ="Clocked Out";
 			
 		}
 		else
 		{
 			homePage.clickOnClockIn();
+			
+			status = "Clocked In";
 			 
 		}
 		expectedStatus = homePage.getTextFromClockOutClockInPanel();
 		System.out.println(expectedStatus);
 		homePage.clickOnTimeCardButton();
-		timeCardPage.clickOnClockInClouckOutTab();
+		timeCardPage.clickOnClockInClockOutTab();
 		timeCardPage.enterTextInSearchField(prop.getProperty("profileName"));
 		String actualStatus = timeCardPage.getTextFromClockInClockOutStatus();
 		System.out.println(actualStatus);
-		
+		if(status.contains("Clocked out"))
+				{
+		Assert.assertTrue(actualStatus.contains("Not clocked in yet")&&expectedStatus.contains("You are currently clocked out"));
+				}
+		else
+		{
+			Assert.assertTrue(actualStatus.contains(expectedStatus));
+		}
 	}
 	@Test(priority =4)
 	public void applyLeave() throws IOException 
@@ -156,19 +166,28 @@ public class QALegendTestCases extends BaseClass
 		Assert.assertEquals(actualTaskTitle, expectedTaskTitle);
 	}
 	@Test(priority =6)
-public void addInvoiceAndPerformPayment() throws IOException
+public void addInvoice() throws IOException
 {
 	homePage.clickOnInvoiceButton();
 	invoicePage.clickOnAddInvoice();
 	invoicePage.enterInvoiceDueDate(excelFilePath);
-	invoicePage.selectClientfromClientDropdown();
-	invoicePage.clickOnSaveInAddInvoicePopUp();;
+	String expectedClient = invoicePage.selectClientfromClientDropdown();
+	invoicePage.clickOnSaveInAddInvoicePopUp();
 	
 	invoicePage.clickOnAddItem();
 	invoicePage.selectItemFromItemDropdown();
-	String expectedItemQuantity=invoicePage.enterQuantity(excelFilePath);
-	String expectedItemRate=invoicePage.enterRate(excelFilePath);
+	String expectedItemQuantity=invoicePage.enterQuantity(excelFilePath)+" "+invoicePage.getQuantityUnit();
 	invoicePage.clickOnSubmitFromAddItemPopUp();
+	
+	String actualClient = invoicePage.getActualClient();
+	String actualItemQuantity = invoicePage.getActualQuantity();
+	
+	Assert.assertEquals(actualClient, expectedClient);
+	//Assert.assertEquals(actualItemQuantity, expectedItemQuantity);
+	
+	Assert.assertTrue(actualItemQuantity.contains(expectedItemQuantity));
+	
+	
 }
 	@Test(priority =7)
 	public void addTeamMembers() throws IOException
@@ -207,12 +226,19 @@ public void addInvoiceAndPerformPayment() throws IOException
 		
 	}
 	@Test
-	public void messageInCRM()
+	public void messageInCRM() throws IOException
 	{
 		homePage.clickOnMessageButton();
 		messagePage.clickOnComposeButton();
 		messagePage.clickOnRecepientDropDown();
 		messagePage.selectRecepientFromDropdown();
+		String expSubject = messagePage.enterSubjectInComposeMessagePopUp(excelFilePath);
+		String expMessage = messagePage.enterMessagetInComposeMessagePopUp(excelFilePath);
+		messagePage.clickOnSaveButton();
+		messagePage.clickOnSentItems();
+		String actualSubject = messagePage.getActualSubject();
+		String actualMessage = messagePage.getActualMessage();
+		Assert.assertTrue(actualMessage.contains(expMessage)&&actualSubject.contains(expSubject));
 	}
 	@Test
 	

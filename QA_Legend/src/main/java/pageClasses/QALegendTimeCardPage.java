@@ -17,7 +17,7 @@ public class QALegendTimeCardPage {
 	WebElement clockInClockOutTab;
 	@FindBy(xpath = "(//input[@type='search'])[2]")
 	WebElement searchField;
-	@FindBy(xpath = "//div[@class='mb15']")
+	@FindBy(xpath = "(//tr[@role='row']//child::td)[10]")
 	WebElement clockInClockOutStatus;
 	
 	
@@ -50,8 +50,8 @@ public class QALegendTimeCardPage {
 //		WaitUtility.waitForElementToBeClickable(driver, timeCardButton);
 //		PageUtility.clickOnElement(timeCardButton);
 //	}
-	public void clickOnClockInClouckOutTab()
-	{
+	public void clickOnClockInClockOutTab()
+	{PageUtility.pageRefresh(driver);
 		PageUtility.clickOnElement(clockInClockOutTab);
 	}
 	

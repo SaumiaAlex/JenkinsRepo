@@ -29,14 +29,20 @@ public class QALegendInvoicePage {
 	WebElement addItemButton;
 	@FindBy(xpath = "//span[text()='Select from list or create new item...']")
 	WebElement itemDropdown;
-	@FindBy(xpath ="//span[text()='Item new']")
+	@FindBy(xpath ="//div[text()='Item new']")
 	WebElement selectItemFromDropdown;
 	@FindBy(xpath ="//input[@id='invoice_item_quantity']")
 	WebElement quantityField;
 	@FindBy(xpath = "//input[@id='invoice_item_rate']")
-	WebElement reteField;
+	WebElement rateField;
 	@FindBy(xpath = "//button[@type='submit']")
 	WebElement submitAddItemPopUp;
+	@FindBy(xpath = "//strong[text()='AAC Corporation ']")
+	WebElement actualClient;
+	@FindBy(xpath = "(//tr[@role='row']//child::td)[2]")
+	WebElement actualQuantity;
+	@FindBy(xpath = "//input[@id='invoice_unit_type']")
+	WebElement quantityUnit;
 	
 	
 	
@@ -96,11 +102,14 @@ public void enterInvoiceDueDate(String excelFilePath) throws IOException
 	PageUtility.clickOnElement(dateFromPicker);
 	
 }
-public void selectClientfromClientDropdown()
+public String selectClientfromClientDropdown()
 {
 	WaitUtility.waitForElementToBePresent(driver, clientDropdown);
 	PageUtility.clickOnElement(clientDropdown);
+	String expectedClient = PageUtility.getTextFromElement(clientSelect);
 	PageUtility.clickOnElement(clientSelect);
+	
+	return expectedClient;
 }
 
 public void clickOnSaveInAddInvoicePopUp()
@@ -123,18 +132,31 @@ public void selectItemFromItemDropdown()
 
 public String enterQuantity(String excelFilePath) throws IOException
 {
-	String quantity = ExcelUtilities.getString(2,1, excelFilePath, "InvoicePage");
+	String quantity = ExcelUtilities.getNumeric(3,1, excelFilePath, "InvoicePage");
 	PageUtility.enterText(quantityField, quantity);
 return quantity;
 }
-public String enterRate(String excelFilePath) throws IOException
+public String getQuantityUnit() throws IOException
 {
-	String rate = ExcelUtilities.getString(3,1, excelFilePath, "InvoicePage");
-	PageUtility.enterText(quantityField, rate);
-return rate;
+	String qtyUnit = PageUtility.getTextFromElement(quantityUnit);
+	System.out.println(qtyUnit);
+return qtyUnit;
 }
+
 public void clickOnSubmitFromAddItemPopUp()
 {WaitUtility.waitForElementToBeClickable(driver, submitAddItemPopUp);
 	PageUtility.clickOnElement(submitAddItemPopUp);
+}
+public String getActualClient()
+{
+	PageUtility.pageRefresh(driver);
+	String actClient = PageUtility.getTextFromElement(actualClient);
+	return actClient;
+}
+public String getActualQuantity()
+{
+	
+	String actualQty = PageUtility.getTextFromElement(actualQuantity);
+	return actualQty;
 }
 }
