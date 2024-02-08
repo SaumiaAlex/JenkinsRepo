@@ -1,7 +1,9 @@
 package pageClasses;
 
 import java.io.IOException;
+import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,6 +32,14 @@ WebElement dateField;
 WebElement applyLeaveButtonInPopUp;
 @FindBy(xpath = "//textarea[@name='reason']")
 WebElement reasonTextField;
+@FindBy(xpath = "//b[@role='presentation']")
+WebElement dropDownToShowAll;
+@FindBy(xpath = "//div[text()='All']")
+WebElement selectAllFromDropDown;
+@FindBy(xpath = "//a[@title='Application details']")
+List<WebElement>applicationDetails;
+@FindBy(xpath = "//td[text()=' Reason']//following-sibling::td")
+WebElement resonForLeave;
 
 
 
@@ -86,20 +96,46 @@ public void clickOnDateField()
 }
 public void enterDate(String excelFilePath) throws IOException
 {
-	String leaveDate = DateUtility.convertToDateFormat(ExcelUtilities.getDateValue(0, 1, excelFilePath, "LeavePage"));
+	String leaveDate = DateUtility.getCurrentDate();
 	PageUtility.enterText(dateField, leaveDate);
 			
 }
-public void clickOnDateApplyLeaveInPopUp()
+public void clickOnApplyLeaveInPopUp()
 {
 	PageUtility.clickOnElement(applyLeaveButtonInPopUp);
 
 }
 
-public void enterReasonForLeave(String excelFilePath) throws IOException
+public String enterReasonForLeave(String excelFilePath) throws IOException
 {
 	String reason = ExcelUtilities.getString(1, 1, excelFilePath, "LeavePage");
 	PageUtility.enterText(reasonTextField, reason);
+	return reason;
+}
+public void clickOnDropdownToListAll()
+{
+	PageUtility.pageRefresh(driver);
+	WaitUtility.waitForElementToBeClickable(driver, dropDownToShowAll);
+	PageUtility.clickOnElement(dropDownToShowAll);
+}
+public void clickOnAllfromDropdownToListAll()
+{
+	
+	WaitUtility.waitForElementToBePresent(driver, selectAllFromDropDown);
+	PageUtility.clickOnElement(selectAllFromDropDown);
+}
+public String clickOnApplicationDetail()
+{
+	//WaitUtility.waitForListOfElements(driver, applicationDetails);
+	
+	int i = applicationDetails.size();
+	WebElement element =driver.findElement(By.xpath("("+"//a[@title='Application details']"+")"+"["+i+"]"));
+	PageUtility.scrollThePage(element, driver);
+	WaitUtility.waitForElementToBeClickable(driver, element);
+	element.click();
+	String actualLeaveReason = PageUtility.getTextFromElement(resonForLeave);
+	return actualLeaveReason;
+	
 }
 }
 

@@ -19,9 +19,11 @@ import pageClasses.QALegendHomePage;
 import pageClasses.QALegendInvoicePage;
 import pageClasses.QALegendLeavePage;
 import pageClasses.QALegendLoginPage;
+import pageClasses.QALegendMessagePage;
 import pageClasses.QALegendNotesPage;
 import pageClasses.QALegendTaskPage;
 import pageClasses.QALegendTeamMembersPage;
+import pageClasses.QALegendTicketsPage;
 import pageClasses.QALegendTimeCardPage;
 import utilities.DateUtility;
 import utilities.FakerUtility;
@@ -42,6 +44,8 @@ public class QALegendTestCases extends BaseClass
 	QALegendInvoicePage invoicePage;
 	QALegendTeamMembersPage teamMembersPage;
 	QALegendAnnouncementsPAge announcementsPage;
+	QALegendMessagePage messagePage;
+	QALegendTicketsPage ticketsPage;
 	String excelFilePath = "/src/main/java/testData/testData_Excel.xlsx";
 	
 	@BeforeMethod
@@ -49,7 +53,7 @@ public class QALegendTestCases extends BaseClass
 	public void initialization(String browser) throws Exception
 	{System.out.println("Before method");
 		driver = browserInitialization(browser);
-		fis = new FileInputStream("C:\\Users\\SAUMIA\\eclipse-workspace\\QA_Legend\\src\\main\\java\\testData\\testData.properties");
+		fis = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\testData\\testData.properties");
 		prop = new Properties();
 		loginPage = new QALegendLoginPage(driver);
 		homePage = new QALegendHomePage(driver);
@@ -60,6 +64,8 @@ public class QALegendTestCases extends BaseClass
 		invoicePage = new QALegendInvoicePage(driver);
 		teamMembersPage = new QALegendTeamMembersPage(driver);
 		announcementsPage = new QALegendAnnouncementsPAge(driver);
+		messagePage = new QALegendMessagePage(driver);
+		ticketsPage = new QALegendTicketsPage(driver);
 		
 		prop.load(fis);
 	 driver.get(prop.getProperty("url"));
@@ -124,24 +130,30 @@ public class QALegendTestCases extends BaseClass
 		
 	}
 	@Test(priority =4)
-	public void applyAndAssignLeave() throws IOException 
+	public void applyLeave() throws IOException 
 	{
 		homePage.clickOnLeaveButton();
 		leavePage.clickOnApplyLeaveButton();
 		leavePage.clickOnLeaveTypeDropDown();
 		leavePage.clickOnCasualLeave();
 		leavePage.enterDate(excelFilePath);
-		leavePage.enterReasonForLeave(excelFilePath);
-		leavePage.clickOnDateApplyLeaveInPopUp();
-	}
+		String expectedLeaveReason = leavePage.enterReasonForLeave(excelFilePath);
+		leavePage.clickOnApplyLeaveInPopUp();
+		leavePage.clickOnDropdownToListAll();
+		leavePage.clickOnAllfromDropdownToListAll();
+		String actualLeaveReason = leavePage.clickOnApplicationDetail();
+		
+		Assert.assertEquals(actualLeaveReason, expectedLeaveReason);
+		}
 	@Test(priority =5)
 	public void addTask() throws IOException 
 	{
 		homePage.clickOnOpenMyTaskPanel();
 		taskPage.clickOnAddTaskButton();
-		taskPage.addTextToTitleField(excelFilePath);
+		String expectedTaskTitle = taskPage.addTextToTitleField(excelFilePath);
 		taskPage.addProjectFromDropDown();
-		taskPage.clickOnSaveAddTaskPopUp();
+		String actualTaskTitle=taskPage.clickOnSaveAddTaskPopUp();
+		Assert.assertEquals(actualTaskTitle, expectedTaskTitle);
 	}
 	@Test(priority =6)
 public void addInvoiceAndPerformPayment() throws IOException
@@ -149,31 +161,76 @@ public void addInvoiceAndPerformPayment() throws IOException
 	homePage.clickOnInvoiceButton();
 	invoicePage.clickOnAddInvoice();
 	invoicePage.enterInvoiceDueDate(excelFilePath);
-	invoicePage.clickOnClientDropdown();
-	invoicePage.selectFromClientDropdown();
-	invoicePage.clickOnAddInvoice(); 
+	invoicePage.selectClientfromClientDropdown();
+	invoicePage.clickOnSaveInAddInvoicePopUp();;
+	
+	invoicePage.clickOnAddItem();
+	invoicePage.selectItemFromItemDropdown();
+	String expectedItemQuantity=invoicePage.enterQuantity(excelFilePath);
+	String expectedItemRate=invoicePage.enterRate(excelFilePath);
+	invoicePage.clickOnSubmitFromAddItemPopUp();
 }
 	@Test(priority =7)
 	public void addTeamMembers() throws IOException
 	{homePage.clickOnTeamMemebersButton();
 		teamMembersPage.clickOnAddMembersButton();
-		teamMembersPage.enterFirstName(excelFilePath);
-		teamMembersPage.enterLastName(excelFilePath);
+		String expectedFirstName=teamMembersPage.enterFirstName(excelFilePath);
+		String expectedLastName=teamMembersPage.enterLastName(excelFilePath);
 		teamMembersPage.clickOnNextButton();
-		teamMembersPage.enterJobTitle(excelFilePath);
+		String expectedJobTitle=teamMembersPage.enterJobTitle(excelFilePath);
 		teamMembersPage.clickOnNextButton();
-		teamMembersPage.enterEmail(excelFilePath);
+		String expectedEmail=teamMembersPage.enterEmail(excelFilePath);
 		teamMembersPage.enterPassword(excelFilePath);
 		teamMembersPage.clickOnSaveButton();
+		String expectedName = expectedFirstName+" "+expectedLastName;
+		teamMembersPage.searchForTeamMember(expectedName);
+		
+		  String memberDetails[] = teamMembersPage.actualTeamMemberDetails();
+		  Assert.assertEquals(memberDetails[0], expectedName);
+		 Assert.assertEquals(memberDetails[1], expectedJobTitle);
+		  Assert.assertEquals(memberDetails[2], expectedEmail);
+		 
 	}
 	@Test(priority =8)
 	public void addAnnouncements() throws IOException
 	{
 		homePage.clickOnAnnouncementsButton();
 		announcementsPage.clickOnAddAnnouncementButton();
-		announcementsPage.enterTitle(excelFilePath);
+		String expectedTitle = announcementsPage.enterTitle(excelFilePath);
 		announcementsPage.enterStartDate(excelFilePath);
 		announcementsPage.enterEndDate(excelFilePath);
 		announcementsPage.clickOnSave();
+		announcementsPage.goBackToAnnouncementsPage();
+		announcementsPage.searchForExpectedAnnouncement(expectedTitle);
+		String actualTitle = announcementsPage.getTextOfActualAnnouncementTitle();
+		Assert.assertEquals(actualTitle, expectedTitle);
+		
 	}
+	@Test
+	public void messageInCRM()
+	{
+		homePage.clickOnMessageButton();
+		messagePage.clickOnComposeButton();
+		messagePage.clickOnRecepientDropDown();
+		messagePage.selectRecepientFromDropdown();
+	}
+	@Test
+	
+	public void addTickets()
+	{
+		
+		 
+		
+	
+		 homePage.clickOnTicketsButton();
+		 
+		
+		ticketsPage.input_AddTicket();
+		ticketsPage.input_Title();
+		ticketsPage.inputClient();
+		ticketsPage.input_Description();
+		ticketsPage.clickOnSave();
+		
+	}
+
 }

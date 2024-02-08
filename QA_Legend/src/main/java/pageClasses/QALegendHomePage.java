@@ -44,6 +44,12 @@ public class QALegendHomePage {
 WebElement teamMembersButton;	
 	@FindBy(xpath = "//span[text()='Announcements']")
 	WebElement announcementsButton;	
+	@FindBy(xpath = "//span[text()='Messages']")
+	WebElement messageButton;	
+	@FindBy(xpath = "//span[text()='Tickets']")
+	WebElement ticketsButton;
+	@FindBy (xpath = "//span[text()='Tickets']//following-sibling::span")
+	WebElement noOfTicketsDisplayed;
 	
 	
 	
@@ -141,5 +147,13 @@ public void clickOnTeamMemebersButton()
 public void clickOnAnnouncementsButton()
 {
 	PageUtility.clickOnElement(announcementsButton);
+}
+public void clickOnMessageButton()
+{
+	PageUtility.clickOnElement(messageButton);
+}
+public void clickOnTicketsButton()
+{
+	PageUtility.clickOnElement(ticketsButton);
 }
 }

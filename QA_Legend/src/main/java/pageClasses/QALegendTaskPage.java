@@ -24,6 +24,8 @@ public class QALegendTaskPage {
 	WebElement addTaskPopUpSaveButton;
 	@FindBy(xpath = "//div[text()='CRM New Project']")
 	WebElement projectName;
+	@FindBy(xpath = "(//tr[@role='row'])[2]//child::td[2]")
+	WebElement actualTaskTitle;
 	  
 	
 	
@@ -67,10 +69,11 @@ public class QALegendTaskPage {
 	}
 	
 
-	public void addTextToTitleField(String excelFieldPath) throws IOException 
+	public String addTextToTitleField(String excelFieldPath) throws IOException 
 	{
 		String title = ExcelUtilities.getString(0, 1, excelFieldPath, "TaskPage")+FakerUtility.randomNumberCreation();
 		PageUtility.enterText(titleTextField, title);
+		return title;
 		
 	}
 
@@ -82,8 +85,12 @@ public class QALegendTaskPage {
 		
 	}
 	
-	public void clickOnSaveAddTaskPopUp()
+	public String clickOnSaveAddTaskPopUp()
 	{
 		PageUtility.clickOnElement(addTaskPopUpSaveButton);
+		PageUtility.pageRefresh(driver);
+		String title = PageUtility.getTextFromElement(actualTaskTitle);
+		return title;
+		
 	}
 }

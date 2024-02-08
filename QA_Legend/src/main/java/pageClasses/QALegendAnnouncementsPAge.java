@@ -12,6 +12,7 @@ import utilities.DateUtility;
 import utilities.ExcelUtilities;
 import utilities.FakerUtility;
 import utilities.PageUtility;
+import utilities.WaitUtility;
 
 public class QALegendAnnouncementsPAge {
 
@@ -25,8 +26,12 @@ WebElement addAnnouncementButton;
 	WebElement startDateField;
 	@FindBy(xpath = "//input[@id='end_date']")
 	WebElement endDateField;
-	@FindBy(xpath = "//button[@id='submit']")
+	@FindBy(xpath = "//button[@type='submit']")
 	WebElement saveButton;
+	@FindBy(xpath ="//input[@type='search']")
+	WebElement announcementsSearchBox;
+	@FindBy(xpath = "//a[@title='View']")
+	WebElement announcementActualTitle;
 	
 	
 	
@@ -67,23 +72,40 @@ WebElement addAnnouncementButton;
 	{
 		PageUtility.clickOnElement(addAnnouncementButton);
 	}
-	public void enterTitle(String excelFilePath) throws IOException
+	public String enterTitle(String excelFilePath) throws IOException
 	{
 		String title= ExcelUtilities.getString(0, 1, excelFilePath, "Announcements")+FakerUtility.randomNumberCreation();
 		PageUtility.enterText(titleField, title);
+		return title;
 	}
 	public void enterStartDate(String excelFilePath) throws IOException
 	{
-		String startDate = DateUtility.convertToDateFormat(ExcelUtilities.getDateValue(1, 1, excelFilePath, "Announcements")) ;
+		String startDate = DateUtility.getCurrentDate();
 		PageUtility.enterText(startDateField, startDate);
 	}
 	public void enterEndDate(String excelFilePath) throws IOException
 	{
-		String endDate = DateUtility.convertToDateFormat(ExcelUtilities.getDateValue(1, 1, excelFilePath, "Announcements")) ;
+		String endDate = DateUtility.getCurrentDate() ;
 		PageUtility.enterText(endDateField, endDate);
 	}
 	public void clickOnSave()
 	{
+		
+		PageUtility.scrollThePage(saveButton, driver);
+		WaitUtility.waitForElementToBeClickable(driver, saveButton);
 		PageUtility.clickOnElement(saveButton);
+	}
+	public void goBackToAnnouncementsPage()
+	{
+		PageUtility.navigateBack(driver);
+	}
+	public void searchForExpectedAnnouncement(String expectedAnnouncement)
+	{
+		PageUtility.enterText(announcementsSearchBox, expectedAnnouncement);
+	}
+	public String getTextOfActualAnnouncementTitle()
+	{
+		return PageUtility.getTextFromElement(announcementActualTitle);
+		
 	}
 }

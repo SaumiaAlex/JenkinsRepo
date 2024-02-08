@@ -1,6 +1,7 @@
 package utilities;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,6 +28,13 @@ public class WaitUtility
 	{
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
     wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
+		
+	}
+	
+	public static void waitForListOfElements (WebDriver driver, List<WebElement>elements)
+	{
+	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+    wait.until(ExpectedConditions.visibilityOfAllElements(elements));
 		
 	}
 }

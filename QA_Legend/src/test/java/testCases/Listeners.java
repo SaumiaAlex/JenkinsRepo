@@ -44,7 +44,7 @@ public class Listeners extends BaseClass implements ITestListener
 			extentTest.get().fail(result.getThrowable());
 			String testMethodName = result.getMethod().getMethodName();
 			try {
-				driver = (WebDriver) result.getTestClass().getRealClass().getDeclaredField("driver").get(result.getInstance());
+				driver = (WebDriver) result.getTestClass().getRealClass().getDeclaredField("driver").get(result.getInstance());//byheart
 			} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

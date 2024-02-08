@@ -14,14 +14,7 @@ public class DateUtility {
 		
 	}
 	
-	public static String convertToDateFormat(Date date)
-	{
 	
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		String formatedDate = sdf.format(date);
-		return formatedDate;
-		
-	}
 	
 
 }

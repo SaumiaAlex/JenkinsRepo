@@ -36,12 +36,14 @@ public class BaseClass {
 		}
 		driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);	
 		return driver;
+		
+		 
 	}
 	
 	public String getScreenShotPath(String testCaseName, WebDriver driver) throws IOException
 	{
-		TakesScreenshot ts = (TakesScreenshot)driver; 
-		File source = ts.getScreenshotAs(OutputType.FILE);
+		TakesScreenshot ts = (TakesScreenshot)driver; //to enable driver to take screenshot
+		File source = ts.getScreenshotAs(OutputType.FILE);//captures screenshot as file
 		String destinationFile = System.getProperty("user.dir")+"\\test-output\\"+testCaseName+".png";
 		Files.copy(source,new File(destinationFile));
 		return destinationFile;
