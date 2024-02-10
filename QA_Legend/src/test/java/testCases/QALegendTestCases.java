@@ -37,9 +37,68 @@ public class QALegendTestCases extends BaseClass
 {
 	public WebDriver driver;
 	
+	 FileInputStream fis;
+	 Properties prop;
+	 QALegendLoginPage loginPage;
+	 QALegendHomePage homePage;
+	 QALegendNotesPage notesPage;
+	 QALegendTimeCardPage timeCardPage;
+	 QALegendLeavePage leavePage;
+	 QALegendTaskPage taskPage;
+	 QALegendInvoicePage invoicePage;
+	 QALegendTeamMembersPage teamMembersPage;
+	 QALegendAnnouncementsPAge announcementsPage;
+	 QALegendMessagePage messagePage;
+	 QALegendTicketsPage ticketsPage;
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	@BeforeMethod
+	@Parameters({"browser"})
+	public void initialization(String browser) throws Exception
+	{System.out.println("Before method");
+		driver = browserInitialization(browser);
+		fis = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\testData\\testData.properties");
+		prop = new Properties();
+		loginPage = new QALegendLoginPage(driver);
+		homePage = new QALegendHomePage(driver);
+		notesPage = new QALegendNotesPage(driver);
+		timeCardPage = new QALegendTimeCardPage(driver);
+		leavePage = new QALegendLeavePage(driver);
+		taskPage = new QALegendTaskPage(driver);
+		invoicePage = new QALegendInvoicePage(driver);
+		teamMembersPage = new QALegendTeamMembersPage(driver);
+		announcementsPage = new QALegendAnnouncementsPAge(driver);
+		messagePage = new QALegendMessagePage(driver);
+		ticketsPage = new QALegendTicketsPage(driver);
+		
+		prop.load(fis);
+	 driver.get(prop.getProperty("url"));
+	 driver.manage().window().maximize();
+	 loginPage.enterUsername(prop.getProperty("username"));
+		loginPage.enterPassword(prop.getProperty("password"));
+		loginPage.clickLoginButton();
+		
+	}
+	
+	
+	
+	
+	
+	
+	@AfterMethod
+	public void tearDown()
+	{
+		driver.quit();
+	}
 	@Test(priority =1,groups= {"regression"})
 	public void loginCRM()
 	{

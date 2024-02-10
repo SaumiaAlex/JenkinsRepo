@@ -2,15 +2,15 @@
 <testng-results ignored="9" total="10" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-02-10T15:19:36 IST" name="Suite" finished-at="2024-02-10T15:19:51 IST" duration-ms="14561">
+  <suite started-at="2024-02-10T17:54:07 IST" name="Suite" finished-at="2024-02-10T17:54:19 IST" duration-ms="12939">
     <groups>
       <group name="regression">
-        <method signature="QALegendTestCases.loginCRM()[pri:1, instance:testCases.QALegendTestCases@66498326]" name="loginCRM" class="testCases.QALegendTestCases"/>
+        <method signature="QALegendTestCases.loginCRM()[pri:1, instance:testCases.QALegendTestCases@1e6454ec]" name="loginCRM" class="testCases.QALegendTestCases"/>
       </group> <!-- regression -->
     </groups>
-    <test started-at="2024-02-10T15:19:36 IST" name="Test" finished-at="2024-02-10T15:19:51 IST" duration-ms="14561">
+    <test started-at="2024-02-10T17:54:07 IST" name="Test" finished-at="2024-02-10T17:54:19 IST" duration-ms="12939">
       <class name="testCases.QALegendTestCases">
-        <test-method is-config="true" signature="initialization(java.lang.String)[pri:0, instance:testCases.QALegendTestCases@66498326]" started-at="2024-02-10T15:19:36 IST" name="initialization" finished-at="2024-02-10T15:19:47 IST" duration-ms="10332" status="PASS">
+        <test-method is-config="true" signature="initialization(java.lang.String)[pri:0, instance:testCases.QALegendTestCases@1e6454ec]" started-at="2024-02-10T17:54:07 IST" name="initialization" finished-at="2024-02-10T17:54:16 IST" duration-ms="9610" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -21,10 +21,14 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialization -->
-        <test-method signature="loginCRM()[pri:1, instance:testCases.QALegendTestCases@66498326]" started-at="2024-02-10T15:19:47 IST" name="loginCRM" finished-at="2024-02-10T15:19:51 IST" duration-ms="4148" status="PASS">
+        <test-method signature="loginCRM()[pri:1, instance:testCases.QALegendTestCases@1e6454ec]" started-at="2024-02-10T17:54:16 IST" name="loginCRM" finished-at="2024-02-10T17:54:18 IST" duration-ms="2307" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginCRM -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.QALegendTestCases@1e6454ec]" started-at="2024-02-10T17:54:19 IST" name="tearDown" finished-at="2024-02-10T17:54:19 IST" duration-ms="912" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
       </class> <!-- testCases.QALegendTestCases -->
     </test> <!-- Test -->
   </suite> <!-- Suite -->
