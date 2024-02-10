@@ -31,6 +31,8 @@ public class WaitUtility
 		
 	}
 	
+	
+	
 	public static void waitForListOfElements (WebDriver driver, List<WebElement>elements)
 	{
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));

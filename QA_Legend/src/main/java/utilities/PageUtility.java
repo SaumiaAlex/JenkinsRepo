@@ -181,6 +181,7 @@ public class PageUtility {
 		sc.selectByValue(value);
 		
 	}
+	//window handling
 	public static void windowHandling(WebDriver driver)
 	{
 		driver.getWindowHandle();
@@ -195,18 +196,7 @@ public class PageUtility {
     	driver.switchTo().defaultContent();
     }
 
-    public static void robotSearchClient() throws AWTException
-    {
-    	Robot robot= new Robot();
-    	robot.keyPress(KeyEvent.VK_A);
-		robot.keyRelease(KeyEvent.VK_A);
-		robot.keyPress(KeyEvent.VK_P);
-		robot.keyRelease(KeyEvent.VK_P);
-		robot.keyPress(KeyEvent.VK_S);
-		robot.keyRelease(KeyEvent.VK_S);
-		robot.keyPress(KeyEvent.VK_ENTER);
-		robot.keyRelease(KeyEvent.VK_ENTER);
-		}
+   
 	
 	
 }

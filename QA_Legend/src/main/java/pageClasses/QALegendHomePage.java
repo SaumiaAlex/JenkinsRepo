@@ -52,6 +52,8 @@ WebElement teamMembersButton;
 	WebElement ticketsButton;
 	@FindBy (xpath = "//span[text()='Tickets']//following-sibling::span")
 	WebElement noOfTicketsDisplayed;
+	@FindBy(xpath ="//span[text()='Dashboard']")
+	WebElement dashboardButton;
 	
 	
 	
@@ -162,4 +164,14 @@ public void clickOnTicketsButton()
 {
 	PageUtility.clickOnElement(ticketsButton);
 }
+public String noOfTickets()
+{
+	return noOfTicketsDisplayed.getText();
+}
+public void clickOnDashboardButton()
+{
+	PageUtility.clickOnElement(dashboardButton);
+}
+//public void getTextOf
+//}
 }

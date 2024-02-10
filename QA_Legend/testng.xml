@@ -4,12 +4,17 @@
 	<listeners>
 		<listener class-name="testCases.Listeners"></listener>
 	</listeners>
+	<!--<groups>
+		<run>
+			<include name="regression"></include>
+		</run>
+	</groups>-->
   <test thread-count="5" name="Test">
 	   <parameter name = "browser" value = "Chrome"/>
 	   <classes>
       <class name="testCases.QALegendTestCases">
 		 <methods>
-			<!--<include name="loginCRM"></include>-->
+			<include name="loginCRM"></include>
 		<!--<include name="notesPageCRM"></include>-->
 	<!--	<include name="clockInClockOut"></include>-->
 	<!--	<include name="applyLeave"></include>-->
@@ -17,7 +22,7 @@
 		<!--<include name="addInvoice"></include>-->
 		<!--<include name="addTeamMembers"></include>-->
 		<!--<include name="addAnnouncements"></include>-->
-		<include name="messageInCRM"></include>
+		<!--<include name="messageInCRM"></include>-->
 		<!--<include name="addTickets"></include>-->
 		 </methods>
 	  </class>

@@ -88,11 +88,12 @@ WebDriver driver;
 	}
 	public void clickOnSentItems()
 	{
-		//PageUtility.pageRefresh(driver);
-		clickOnSentItems();
+		PageUtility.pageRefresh(driver);
+		WaitUtility.waitForElementToBeClickable(driver, sentItemsButton);
+		PageUtility.clickOnElement(sentItemsButton);
 	}
 	public void clickOnTheMessageSentFromSentItems()
-	{
+	{WaitUtility.waitForElementToBePresent(driver, sentMessage);
 		PageUtility.clickOnElement(sentMessage);
 	}
 	public String getActualSubject()

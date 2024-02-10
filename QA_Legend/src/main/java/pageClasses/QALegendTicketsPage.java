@@ -1,6 +1,7 @@
 package pageClasses;
 
 import java.awt.AWTException;
+import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
@@ -8,7 +9,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.ExcelUtilities;
+import utilities.FakerUtility;
 import utilities.PageUtility;
+import utilities.WaitUtility;
 
 public class QALegendTicketsPage {
 WebDriver driver;
@@ -28,22 +32,40 @@ WebDriver driver;
 	@FindBy(id="title")
 	WebElement inputField_Title;
 	
-	@FindBy(id="title")
-	WebElement input_FieldTitle;
-	@FindBy(xpath = "//div[@class='form-group']//label[@for='client_id']")
-	WebElement dropdownIcon;
+	@FindBy(xpath = "//div[@id='s2id_client_id']")//"(//span[@class='select2-chosen'])[2]")
+	WebElement clientDropdown;
 	
-	@FindBy(xpath  = "//select[@name='client_id']")
-	WebElement selectDropDown;
+	@FindBy(xpath = "(//div[text()='AAC Corporation '])[1]")
+	WebElement selectClient;
 	
-	@FindBy(xpath="//ul//li//div[@class='select2-result-label' and text()='APS Test Company ']]")
-	WebElement inputSearch_Client;
-	
-	@FindBy(id="description")
+	@FindBy(xpath = "//textArea[@name='description']")//id="description")
 	WebElement input_Description;
 	
 	@FindBy(xpath="//button[text()=' Save']")
 	WebElement clickOnSave;
+	
+	@FindBy(xpath = "//input[@type='search']")
+	WebElement searchField;
+	
+	@FindBy(xpath = "(//tr[@role='row'])[2]//child::td[2]//child::a")
+	WebElement actualTicketTitle;
+	
+	@FindBy(xpath = "//div[@class='media-body']//child::p")
+	WebElement actualDescription;
+	
+	@FindBy(xpath = "//span[text()='New']")
+	List<WebElement> status;
+	
+	@FindBy(xpath = "(//span[@class='select2-chosen'])[1]")
+	WebElement listDropdrown;
+	
+	@FindBy(xpath = "//div[text()='All']")
+	WebElement selectAllfromDropdown;
+	
+	
+	
+	
+	
 	
 	public QALegendTicketsPage(WebDriver driver)
 	{
@@ -52,17 +74,32 @@ WebDriver driver;
 		PageFactory.initElements(driver, this);
 	}
 
-	public void input_AddTicket()
+	
+	
+	
+	
+	
+	
+	
+	public void clickOnAddTicket()
 	{
 		PageUtility.clickOnElement(addNewTicket);
 	}
-	public void input_Title()
+	public String input_Title(String excelFilePath) throws IOException
 	{
-		PageUtility.clickOnElement(input_FieldTitle);
+		String title = ExcelUtilities.getString(0, 1, excelFilePath, "TicketsPage")+FakerUtility.randomNumberCreation();
+		PageUtility.enterText(inputField_Title, title);
+		//PageUtility.clickOnElement(inputField_Title);
+		return title;
 	}
-	public void input_Description()
+	public String input_Description(String excelFilePath) throws IOException
 	{
-		PageUtility.clickOnElement(input_Description);
+		WaitUtility.waitForElementToBePresent(driver, input_Description);
+		String description = ExcelUtilities.getString(1, 1, excelFilePath, "TicketsPage")+FakerUtility.randomNumberCreation();
+		WaitUtility.waitForElementToBePresent(driver, input_Description);
+		PageUtility.enterText(input_Description, description);
+		//PageUtility.clickOnElement(input_Description);
+		return description;
 	}
 	public void clickOnPrint()
 	{
@@ -71,26 +108,12 @@ WebDriver driver;
 	
 	public void inputClient()
 	{
-		PageUtility.clickOnElement(dropdownIcon);
-	}
-	public void selectFromDropDown(String company) throws AWTException
-	{
-		PageUtility.clickOnElementUsingJavaScriptExecutor(selectDropDown,driver);
-		PageUtility.scrollThePage(inputSearch_Client, driver);
-		PageUtility.clickOnElementUsingJavaScriptExecutor(inputSearch_Client,driver);
-		PageUtility.robotSearchClient();
-	}
-	public String countTheNoOfTickets()
-	{
-		PageUtility.windowHandling(driver);
-		//List<Integer> rowSizes = new ArrayList<>();
-		List<WebElement> rows = noOfTickets; // Assuming rows are within a <tbody>
-		System.out.println(rows.size());// assertion
-		
-		  return String.valueOf(rows.size()-1);
-		
+		WaitUtility.waitForElementToBeClickable(driver, clientDropdown);
+		PageUtility.clickOnElement(clientDropdown);
+		PageUtility.clickOnElement(selectClient);
 		
 	}
+
 	public void switchParentTab()
 	{
 		PageUtility.switchWindowToParentTab(driver);
@@ -99,6 +122,43 @@ WebDriver driver;
 	{
 		PageUtility.clickOnElement(clickOnSave);
 	}
+	
+	public void searchForTicket(String title)
+	{
+		PageUtility.pageRefresh(driver);
+		PageUtility.enterText(searchField, title);
+	}
+	
+	public String getActualTicketTitle()
+	{
+		WaitUtility.waitForElementToBePresent(driver, actualTicketTitle);
+		return PageUtility.getTextFromElement(actualTicketTitle);
+	}
+	
+	public void clickOnActualTicketTitle()
+	{
+		PageUtility.clickOnElement(actualTicketTitle);
+	}
+	
+	public String getActualTicketDescription()
+	{
+		return PageUtility.getTextFromElement(actualDescription);
+	}
+	
+	public void listAllTicketsInTicketsPage()
+	{
+		PageUtility.navigateBack(driver);
+		PageUtility.clickOnElement(listDropdrown);
+		PageUtility.clickOnElement(selectAllfromDropdown);
+		
+	}
+	
+	public String getActualNewTicketNumber()
+	{
+		return String.valueOf(status.size());
+	}
+	
+	
     
 }
 

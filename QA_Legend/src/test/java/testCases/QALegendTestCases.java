@@ -9,7 +9,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -26,6 +28,7 @@ import pageClasses.QALegendTeamMembersPage;
 import pageClasses.QALegendTicketsPage;
 import pageClasses.QALegendTimeCardPage;
 import utilities.DateUtility;
+import utilities.ExcelUtilities;
 import utilities.FakerUtility;
 import utilities.PageUtility;
 import utilities.WaitUtility;
@@ -33,50 +36,11 @@ import utilities.WaitUtility;
 public class QALegendTestCases extends BaseClass
 {
 	public WebDriver driver;
-	FileInputStream fis;
-	Properties prop;
-	QALegendLoginPage loginPage;
-	QALegendHomePage homePage;
-	QALegendNotesPage notesPage;
-	QALegendTimeCardPage timeCardPage;
-	QALegendLeavePage leavePage;
-	QALegendTaskPage taskPage;
-	QALegendInvoicePage invoicePage;
-	QALegendTeamMembersPage teamMembersPage;
-	QALegendAnnouncementsPAge announcementsPage;
-	QALegendMessagePage messagePage;
-	QALegendTicketsPage ticketsPage;
-	String excelFilePath = "/src/main/java/testData/testData_Excel.xlsx";
 	
-	@BeforeMethod
-	@Parameters({"browser"})
-	public void initialization(String browser) throws Exception
-	{System.out.println("Before method");
-		driver = browserInitialization(browser);
-		fis = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\testData\\testData.properties");
-		prop = new Properties();
-		loginPage = new QALegendLoginPage(driver);
-		homePage = new QALegendHomePage(driver);
-		notesPage = new QALegendNotesPage(driver);
-		timeCardPage = new QALegendTimeCardPage(driver);
-		leavePage = new QALegendLeavePage(driver);
-		taskPage = new QALegendTaskPage(driver);
-		invoicePage = new QALegendInvoicePage(driver);
-		teamMembersPage = new QALegendTeamMembersPage(driver);
-		announcementsPage = new QALegendAnnouncementsPAge(driver);
-		messagePage = new QALegendMessagePage(driver);
-		ticketsPage = new QALegendTicketsPage(driver);
-		
-		prop.load(fis);
-	 driver.get(prop.getProperty("url"));
-	 driver.manage().window().maximize();
-	 loginPage.enterUsername(prop.getProperty("username"));
-		loginPage.enterPassword(prop.getProperty("password"));
-		loginPage.clickLoginButton();
-		
-	}
 	
-	@Test(priority =1)
+	
+	
+	@Test(priority =1,groups= {"regression"})
 	public void loginCRM()
 	{
 	
@@ -87,10 +51,22 @@ public class QALegendTestCases extends BaseClass
 		String expectedUserName = prop.getProperty("profileName");
 		String actulalUserName = homePage.getProfileName();
 		Assert.assertEquals(actulalUserName, expectedUserName);
-//		System.out.println(FakerUtility.randomNumberCreation());
-//		System.out.println(DateUtility.getCurrentDate());
+
 	}
-	@Test(priority =2)
+//	@DataProvider (name="login_Details")
+//	public Object[][] testData() throws IOException
+//	{
+//		Object[][] loginData = new Object[3][2];
+//		loginData[0][0] = ExcelUtilities.getString(1, 0, excelFilePath, "LoginPage");
+//		loginData[0][1] = ExcelUtilities.getNumeric(1, 1, excelFilePath, "LoginPage");
+//		loginData[1][0] = ExcelUtilities.getString(2, 0, excelFilePath, "LoginPage");
+//		loginData[1][1] = ExcelUtilities.getString(2, 1, excelFilePath, "LoginPage");
+//		loginData[2][0] = ExcelUtilities.getString(3, 0, excelFilePath, "LoginPage");
+//		loginData[2][1] = ExcelUtilities.getString(3, 1, excelFilePath, "LoginPage");
+//		
+//		return loginData;
+//				}
+	@Test(priority =2,groups= {"smoke test"})
 	public void notesPageCRM() throws Exception
 	{
 		notesPage.clickOnNotesButton();
@@ -101,7 +77,7 @@ public class QALegendTestCases extends BaseClass
 		String actualNotesTitle  = notesPage.getActualTitle();
 		Assert.assertEquals(actualNotesTitle, expectedNotesTitle);
 	}
-	@Test(priority =3)
+	@Test(priority =3,groups= {"regression"})
 	public void clockInClockOut() throws IOException
 	{
 		String expectedNotes;
@@ -139,7 +115,7 @@ public class QALegendTestCases extends BaseClass
 			Assert.assertTrue(actualStatus.contains(expectedStatus));
 		}
 	}
-	@Test(priority =4)
+	@Test(priority =4,groups= {"smoke test"})
 	public void applyLeave() throws IOException 
 	{
 		homePage.clickOnLeaveButton();
@@ -155,7 +131,7 @@ public class QALegendTestCases extends BaseClass
 		
 		Assert.assertEquals(actualLeaveReason, expectedLeaveReason);
 		}
-	@Test(priority =5)
+	@Test(priority =5,groups= {"regression"})
 	public void addTask() throws IOException 
 	{
 		homePage.clickOnOpenMyTaskPanel();
@@ -165,7 +141,7 @@ public class QALegendTestCases extends BaseClass
 		String actualTaskTitle=taskPage.clickOnSaveAddTaskPopUp();
 		Assert.assertEquals(actualTaskTitle, expectedTaskTitle);
 	}
-	@Test(priority =6)
+	@Test(priority =6,groups= {"smoke test"})
 public void addInvoice() throws IOException
 {
 	homePage.clickOnInvoiceButton();
@@ -189,7 +165,7 @@ public void addInvoice() throws IOException
 	
 	
 }
-	@Test(priority =7)
+	@Test(priority =7,groups = {"regression"})
 	public void addTeamMembers() throws IOException
 	{homePage.clickOnTeamMemebersButton();
 		teamMembersPage.clickOnAddMembersButton();
@@ -210,7 +186,7 @@ public void addInvoice() throws IOException
 		  Assert.assertEquals(memberDetails[2], expectedEmail);
 		 
 	}
-	@Test(priority =8)
+	@Test(priority =8,groups= {"smoke test"})
 	public void addAnnouncements() throws IOException
 	{
 		homePage.clickOnAnnouncementsButton();
@@ -225,7 +201,7 @@ public void addInvoice() throws IOException
 		Assert.assertEquals(actualTitle, expectedTitle);
 		
 	}
-	@Test
+	@Test(priority =9,groups= {"regression"})
 	public void messageInCRM() throws IOException
 	{
 		homePage.clickOnMessageButton();
@@ -236,27 +212,44 @@ public void addInvoice() throws IOException
 		String expMessage = messagePage.enterMessagetInComposeMessagePopUp(excelFilePath);
 		messagePage.clickOnSaveButton();
 		messagePage.clickOnSentItems();
+		messagePage.clickOnTheMessageSentFromSentItems();
 		String actualSubject = messagePage.getActualSubject();
 		String actualMessage = messagePage.getActualMessage();
 		Assert.assertTrue(actualMessage.contains(expMessage)&&actualSubject.contains(expSubject));
+		
 	}
-	@Test
+	@Test(priority=10,groups= {"smoke test"})
 	
-	public void addTickets()
+	public void addTickets() throws IOException
 	{
 		
+		homePage.clickOnTicketsButton();
 		 
 		
-	
-		 homePage.clickOnTicketsButton();
-		 
-		
-		ticketsPage.input_AddTicket();
-		ticketsPage.input_Title();
+		ticketsPage.clickOnAddTicket();
+		String expectedTitle=ticketsPage.input_Title(excelFilePath);
 		ticketsPage.inputClient();
-		ticketsPage.input_Description();
+		String expectedDescription = ticketsPage.input_Description(excelFilePath);
 		ticketsPage.clickOnSave();
+		ticketsPage.searchForTicket(expectedTitle);
+		String actualTitle = ticketsPage.getActualTicketTitle();
+		ticketsPage.clickOnActualTicketTitle();
+		String actualDescription = ticketsPage.getActualTicketDescription();
+		ticketsPage.listAllTicketsInTicketsPage();
+		String numberOfActualNewTickets = ticketsPage.getActualNewTicketNumber();
+		
+		homePage.clickOnDashboardButton();
+		String numberOfTicketsDisplayedInHomePage = homePage.noOfTickets();
+		System.out.println("ticket no in homePage ="+ numberOfTicketsDisplayedInHomePage);
+		System.out.println("ticket no in ticketsPage ="+ numberOfActualNewTickets);
+		
+		Assert.assertTrue(actualTitle.contains(expectedTitle) && actualDescription.contains(expectedDescription));
+		Assert.assertEquals(numberOfActualNewTickets, numberOfTicketsDisplayedInHomePage);
+		
+		
+		
 		
 	}
+	
 
 }
