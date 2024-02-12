@@ -25,6 +25,8 @@ public class QALegendInvoicePage {
 	WebElement saveButtonForAddInvoicePopUp;
 	@FindBy(xpath = "//td[text()='10']")
 	WebElement dateFromPicker;
+	@FindBy (xpath = "(//th[@class='next'])[1]")
+	WebElement nextMonth;
 	@FindBy(xpath = "//a[@title='Add item']")
 	WebElement addItemButton;
 	@FindBy(xpath = "//span[text()='Select from list or create new item...']")
@@ -91,7 +93,7 @@ public QALegendInvoicePage(WebDriver driver) {
 
 
 public void clickOnAddInvoice()
-{WaitUtility.waitForElementToBeClickable(driver, addInvoiceButton);
+{WaitUtility.waitForElementToBePresent(driver, addInvoiceButton);
 	PageUtility.clickOnElement(addInvoiceButton);
 }
 public void enterInvoiceDueDate(String excelFilePath) throws IOException
@@ -99,6 +101,7 @@ public void enterInvoiceDueDate(String excelFilePath) throws IOException
 //	String dueDate = ExcelUtilities.getDateValue(1, 1, excelFilePath, "InvoicePage");
 //	PageUtility.enterText(invoiceDueDateField, dueDate);
 	PageUtility.clickOnElement(invoiceDueDateField);
+	PageUtility.clickOnElement(nextMonth);
 	PageUtility.clickOnElement(dateFromPicker);
 	
 }

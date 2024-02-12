@@ -15,15 +15,15 @@
       <class name="testCases.QALegendTestCases">
 		 <methods>
 			<include name="loginCRM"></include>
-		<!--<include name="notesPageCRM"></include>-->
-	<!--	<include name="clockInClockOut"></include>-->
-	<!--	<include name="applyLeave"></include>-->
-	<!--<include name="addTask"></include>-->
-		<!--<include name="addInvoice"></include>-->
-		<!--<include name="addTeamMembers"></include>-->
-		<!--<include name="addAnnouncements"></include>-->
-		<!--<include name="messageInCRM"></include>-->
-		<!--<include name="addTickets"></include>-->
+		<include name="notesPageCRM"></include>
+	<include name="clockInClockOut"></include>
+	<include name="applyLeave"></include>
+	<include name="addTask"></include>
+		<include name="addInvoice"></include>
+		<include name="addTeamMembers"></include>
+		<include name="addAnnouncements"></include>
+		<include name="messageInCRM"></include>
+		<include name="addTickets"></include>
 		 </methods>
 	  </class>
 	  

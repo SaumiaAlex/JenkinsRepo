@@ -104,7 +104,7 @@
                     <div class="method-list-content passed suite-Suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="testCases.QALegendTestCases" class="method navigator-link" hash-for-method="loginCRM">loginCRM</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Suite" title="testCases.QALegendTestCases" class="method navigator-link" hash-for-method="addInvoice">addInvoice</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Suite -->
@@ -127,9 +127,9 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="loginCRM">
-                  </a> <!-- loginCRM -->
-                  <span class="method-name">loginCRM</span>
+                  <a name="addInvoice">
+                  </a> <!-- addInvoice -->
+                  <span class="method-name">addInvoice</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -152,7 +152,7 @@
     &lt;classes&gt;
       &lt;class name=&quot;testCases.QALegendTestCases&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;loginCRM&quot;/&gt;
+          &lt;include name=&quot;addInvoice&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- testCases.QALegendTestCases --&gt;
     &lt;/classes&gt;
@@ -179,10 +179,10 @@
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="test-group">
-              <span class="test-group-name">regression</span>
+              <span class="test-group-name">smoke test</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">loginCRM</span>
+                <span class="method-in-group-name">addInvoice</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -204,14 +204,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'loginCRM')
+data.setCell(0, 1, 'addInvoice')
 data.setCell(0, 2, 'testCases.QALegendTestCases')
-data.setCell(0, 3, 2307);
+data.setCell(0, 3, 7141);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 2 seconds</span>
+              <span class="suite-total-time">Total running time: 7 seconds</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -242,13 +242,13 @@ return data;
                 <br/>
                 <span class="ignored-method-name">addTask</span>
                 <br/>
-                <span class="ignored-method-name">addInvoice</span>
-                <br/>
                 <span class="ignored-method-name">notesPageCRM</span>
                 <br/>
                 <span class="ignored-method-name">addAnnouncements</span>
                 <br/>
                 <span class="ignored-method-name">addTickets</span>
+                <br/>
+                <span class="ignored-method-name">loginCRM</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -266,13 +266,9 @@ return data;
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">loginCRM</span>
-                <span class="method-start">9612 ms</span>
+                <span class="method-name">addInvoice</span>
+                <span class="method-start">8101 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">tearDown</span>
-                <span class="method-start">11959 ms</span>
-              </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

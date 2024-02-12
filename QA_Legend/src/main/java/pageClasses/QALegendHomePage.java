@@ -2,7 +2,9 @@ package pageClasses;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -54,6 +56,8 @@ WebElement teamMembersButton;
 	WebElement noOfTicketsDisplayed;
 	@FindBy(xpath ="//span[text()='Dashboard']")
 	WebElement dashboardButton;
+	@FindBy(xpath = "//li[@class='    main']")//"//img[@class='dashboard-image']")
+	List<WebElement>dashboardImage;
 	
 	
 	
@@ -172,6 +176,19 @@ public void clickOnDashboardButton()
 {
 	PageUtility.clickOnElement(dashboardButton);
 }
-//public void getTextOf
-//}
+
+public boolean toCheckLoggedInorNot()
+{
+	PageUtility.pageRefresh(driver);
+	int size = dashboardImage.size();
+	if(size >1)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 }

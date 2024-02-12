@@ -2,12 +2,9 @@ package testCases;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.Properties;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -27,11 +24,8 @@ import pageClasses.QALegendTaskPage;
 import pageClasses.QALegendTeamMembersPage;
 import pageClasses.QALegendTicketsPage;
 import pageClasses.QALegendTimeCardPage;
-import utilities.DateUtility;
 import utilities.ExcelUtilities;
-import utilities.FakerUtility;
-import utilities.PageUtility;
-import utilities.WaitUtility;
+
 
 public class QALegendTestCases extends BaseClass
 {
@@ -49,13 +43,7 @@ public class QALegendTestCases extends BaseClass
 	 QALegendTeamMembersPage teamMembersPage;
 	 QALegendAnnouncementsPAge announcementsPage;
 	 QALegendMessagePage messagePage;
-	 QALegendTicketsPage ticketsPage;
-	
-	
-	
-	
-	
-	
+	 QALegendTicketsPage ticketsPage;	
 	
 	
 	
@@ -90,41 +78,66 @@ public class QALegendTestCases extends BaseClass
 	}
 	
 	
+//	@AfterMethod
+//	public void tearDown()
+//	{
+//		driver.quit();
+//	}
 	
 	
 	
-	
-	@AfterMethod
-	public void tearDown()
-	{
-		driver.quit();
-	}
-	@Test(priority =1,groups= {"regression"})
-	public void loginCRM()
+	@Test(priority =1,groups= {"regression"}, dataProvider = "login_Details")
+	public void loginCRM(String username, String password)
 	{
 	
 		homePage.userLogOut();
-		loginPage.enterUsername(prop.getProperty("username"));
-		loginPage.enterPassword(prop.getProperty("password"));
+		
+
+		loginPage.enterUsername(username);
+		loginPage.enterPassword(password);
 		loginPage.clickLoginButton();
-		String expectedUserName = prop.getProperty("profileName");
-		String actulalUserName = homePage.getProfileName();
-		Assert.assertEquals(actulalUserName, expectedUserName);
+		boolean loggedInStatus = homePage.toCheckLoggedInorNot();
+		
+	
+		if(loggedInStatus==true)
+		{
+			String expectedUserName = prop.getProperty("profileName");
+			String actulalUserName = homePage.getProfileName();
+			Assert.assertEquals(actulalUserName, expectedUserName);
+		
+		}
+		else
+		{
+			String expectedHeading = prop.getProperty("signIn");
+			String actualHeading = loginPage.getTextFromLoginPage();
+			Assert.assertEquals(actualHeading, expectedHeading);
+
+		}
+		
+		
+//		loginPage.enterUsername(prop.getProperty("username"));
+//		loginPage.enterPassword(prop.getProperty("password"));
+//		loginPage.clickLoginButton();
+//		String expectedUserName = prop.getProperty("profileName");
+//		String actulalUserName = homePage.getProfileName();
+//		Assert.assertEquals(actulalUserName, expectedUserName);
 
 	}
-//	@DataProvider (name="login_Details")
-//	public Object[][] testData() throws IOException
-//	{
-//		Object[][] loginData = new Object[3][2];
-//		loginData[0][0] = ExcelUtilities.getString(1, 0, excelFilePath, "LoginPage");
-//		loginData[0][1] = ExcelUtilities.getNumeric(1, 1, excelFilePath, "LoginPage");
-//		loginData[1][0] = ExcelUtilities.getString(2, 0, excelFilePath, "LoginPage");
-//		loginData[1][1] = ExcelUtilities.getString(2, 1, excelFilePath, "LoginPage");
-//		loginData[2][0] = ExcelUtilities.getString(3, 0, excelFilePath, "LoginPage");
-//		loginData[2][1] = ExcelUtilities.getString(3, 1, excelFilePath, "LoginPage");
-//		
-//		return loginData;
-//				}
+	@DataProvider (name="login_Details")
+	public Object[][] testData() throws IOException
+	{
+		Object[][] loginData = new Object[4][2];
+		loginData[0][0] = ExcelUtilities.getString(1, 0, excelFilePath, "LoginPage");
+		loginData[0][1] = ExcelUtilities.getNumeric(1, 1, excelFilePath, "LoginPage");
+		loginData[1][0] = ExcelUtilities.getString(2, 0, excelFilePath, "LoginPage");
+		loginData[1][1] = ExcelUtilities.getString(2, 1, excelFilePath, "LoginPage");
+		loginData[2][0] = ExcelUtilities.getString(3, 0, excelFilePath, "LoginPage");
+		loginData[2][1] = ExcelUtilities.getNumeric(3, 1, excelFilePath, "LoginPage");
+		loginData[3][0] = ExcelUtilities.getString(4, 0, excelFilePath, "LoginPage");
+		loginData[3][1] = ExcelUtilities.getString(4, 1, excelFilePath, "LoginPage");
+		
+		return loginData;
+				}
 	@Test(priority =2,groups= {"smoke test"})
 	public void notesPageCRM() throws Exception
 	{

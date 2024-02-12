@@ -2,15 +2,15 @@
 <testng-results ignored="9" total="10" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-02-10T17:54:07 IST" name="Suite" finished-at="2024-02-10T17:54:19 IST" duration-ms="12939">
+  <suite started-at="2024-02-12T17:11:54 IST" name="Suite" finished-at="2024-02-12T17:12:10 IST" duration-ms="15286">
     <groups>
-      <group name="regression">
-        <method signature="QALegendTestCases.loginCRM()[pri:1, instance:testCases.QALegendTestCases@1e6454ec]" name="loginCRM" class="testCases.QALegendTestCases"/>
-      </group> <!-- regression -->
+      <group name="smoke test">
+        <method signature="QALegendTestCases.addInvoice()[pri:6, instance:testCases.QALegendTestCases@1cbb87f3]" name="addInvoice" class="testCases.QALegendTestCases"/>
+      </group> <!-- smoke test -->
     </groups>
-    <test started-at="2024-02-10T17:54:07 IST" name="Test" finished-at="2024-02-10T17:54:19 IST" duration-ms="12939">
+    <test started-at="2024-02-12T17:11:54 IST" name="Test" finished-at="2024-02-12T17:12:10 IST" duration-ms="15286">
       <class name="testCases.QALegendTestCases">
-        <test-method is-config="true" signature="initialization(java.lang.String)[pri:0, instance:testCases.QALegendTestCases@1e6454ec]" started-at="2024-02-10T17:54:07 IST" name="initialization" finished-at="2024-02-10T17:54:16 IST" duration-ms="9610" status="PASS">
+        <test-method is-config="true" signature="initialization(java.lang.String)[pri:0, instance:testCases.QALegendTestCases@1cbb87f3]" started-at="2024-02-12T17:11:54 IST" name="initialization" finished-at="2024-02-12T17:12:03 IST" duration-ms="8100" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -21,14 +21,10 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialization -->
-        <test-method signature="loginCRM()[pri:1, instance:testCases.QALegendTestCases@1e6454ec]" started-at="2024-02-10T17:54:16 IST" name="loginCRM" finished-at="2024-02-10T17:54:18 IST" duration-ms="2307" status="PASS">
+        <test-method signature="addInvoice()[pri:6, instance:testCases.QALegendTestCases@1cbb87f3]" started-at="2024-02-12T17:12:03 IST" name="addInvoice" finished-at="2024-02-12T17:12:10 IST" duration-ms="7141" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- loginCRM -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.QALegendTestCases@1e6454ec]" started-at="2024-02-10T17:54:19 IST" name="tearDown" finished-at="2024-02-10T17:54:19 IST" duration-ms="912" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
+        </test-method> <!-- addInvoice -->
       </class> <!-- testCases.QALegendTestCases -->
     </test> <!-- Test -->
   </suite> <!-- Suite -->

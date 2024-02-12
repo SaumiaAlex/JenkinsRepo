@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import utilities.PageUtility;
+import utilities.WaitUtility;
 
 public class QALegendLoginPage {
 	
@@ -16,6 +17,8 @@ WebElement usernameField;
 WebElement passwordField;
 @FindBy(xpath = "//button[@class='btn btn-lg btn-primary btn-block mt15']")
 WebElement loginButton;
+@FindBy(xpath = "//span[text()='Authentication failed!']")//"//h2[text()='Sign in']")
+WebElement signInHeading;
 
 
 
@@ -45,5 +48,11 @@ public void clickLoginButton()
 	PageUtility.clickOnElement(loginButton);
 }
 
+public String getTextFromLoginPage()
+{
+	WaitUtility.waitForElementToBePresent(driver, signInHeading);
+	String text = PageUtility.getTextFromElement(signInHeading);
+	return text;
+}
 
 }
