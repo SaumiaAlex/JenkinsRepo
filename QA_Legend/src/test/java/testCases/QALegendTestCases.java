@@ -78,11 +78,11 @@ public class QALegendTestCases extends BaseClass
 	}
 	
 	
-//	@AfterMethod
-//	public void tearDown()
-//	{
-//		driver.quit();
-//	}
+	@AfterMethod
+	public void tearDown()
+	{
+		driver.quit();
+	}
 	
 	
 	

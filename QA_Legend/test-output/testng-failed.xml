@@ -9,8 +9,8 @@
     <classes>
       <class name="testCases.QALegendTestCases">
         <methods>
+          <include name="clockInClockOut"/>
           <include name="initialization"/>
-          <include name="addInvoice"/>
         </methods>
       </class> <!-- testCases.QALegendTestCases -->
     </classes>
