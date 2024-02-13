@@ -40,7 +40,7 @@ public class BaseClass {
 		{
 			throw new Exception("Invalid Name Exception");
 		}
-		driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);	
+		driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);	
 		return driver;
 		
 		 
