@@ -3,6 +3,7 @@ package utilities;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -36,8 +37,25 @@ public class ExcelUtilities {
 		return String.valueOf(value);
 	}
 	
-	
-	
+	public static ArrayList<String> getString(String filePath, String sheetName) throws IOException
+	{
+		f = new FileInputStream(System.getProperty("user.dir")+ filePath);
+		wb = new XSSFWorkbook(f);
+		sh = wb.getSheet(sheetName);
+		ArrayList<String>excelRows = new ArrayList<String>();
+		int rowCount = sh.getLastRowNum()-sh.getFirstRowNum();
+		for(int i=0;i<=rowCount;i++)
+		{
+			Row row = sh.getRow(i);
+			int cellCount = row.getLastCellNum();
+			for(int j=0;j<cellCount;j++)
+			{
+			excelRows.add(row.getCell(j).getStringCellValue());
+			}
+			
+		}
+		return excelRows;
+	}
 	
 	
 
