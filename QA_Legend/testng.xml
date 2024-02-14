@@ -16,7 +16,7 @@
 		 <methods>
 			<include name="loginCRM"></include>
 		<include name="notesPageCRM"></include>
-	<include name="clockInClockOut"></include>
+	<!--<include name="clockInClockOut"></include>-->
 	<include name="applyLeave"></include>
 	<include name="addTask"></include>
 		<include name="addInvoice"></include>
