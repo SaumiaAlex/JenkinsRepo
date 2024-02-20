@@ -1,31 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
+	<groups>
+		<run>
+			<include name="regression"></include>
+			<!--<include name="smokeTest"></include>-->
+		</run>
+	</groups>
+	
 	<listeners>
 		<listener class-name="testCases.Listeners"></listener>
 	</listeners>
-	<!--<groups>
-		<run>
-			<include name="regression"></include>
-		</run>
-	</groups>-->
-  <test thread-count="5" name="Test">
+	
+	
+  <test thread-count="2" name="Test">
+	  
+	  
 	   <parameter name = "browser" value = "Chrome"/>
 	   <classes>
+		   
       <class name="testCases.QALegendTestCases">
-		 <methods>
-			<include name="loginCRM"></include>
-		<include name="notesPageCRM"></include>
+		 <!--<methods>-->
+			 
+		<!--<include name="loginCRM"></include>-->
+		<!--<include name="notesPageCRM"></include>-->
 	<!--<include name="clockInClockOut"></include>-->
-	<include name="applyLeave"></include>
+	<!--<include name="applyLeave"></include>
 	<include name="addTask"></include>
-		<include name="addInvoice"></include>
-		<include name="addTeamMembers"></include>
+		<include name="addInvoice"></include>-->
+		<!--<include name="addTeamMembers"></include>
 		<include name="addAnnouncements"></include>
 		<include name="messageInCRM"></include>
-		<include name="addTickets"></include>
-		 </methods>
+		<include name="addTickets"></include>-->
+		<!-- </methods>-->
 	  </class>
+	  
 	  
     </classes>
   </test> <!-- Test -->

@@ -7,12 +7,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.DateUtility;
 import utilities.ExcelUtilities;
+import utilities.FakerUtility;
 import utilities.PageUtility;
 import utilities.WaitUtility;
 
+
 public class QALegendInvoicePage {
 	WebDriver driver;
+	PageUtility pageUtil = new PageUtility();
+	DateUtility dateUtil = new DateUtility();
+	ExcelUtilities excelUtil = new ExcelUtilities();
+	WaitUtility waitUtil = new WaitUtility();
+	
 	@FindBy(xpath = "//a[@title='Add invoice']")
 	WebElement addInvoiceButton;
 	@FindBy(name = "invoice_due_date")
@@ -93,73 +101,73 @@ public QALegendInvoicePage(WebDriver driver) {
 
 
 public void clickOnAddInvoice()
-{WaitUtility.waitForElementToBePresent(driver, addInvoiceButton);
-	PageUtility.clickOnElement(addInvoiceButton);
+{waitUtil.waitForElementToBePresent(driver, addInvoiceButton);
+	pageUtil.clickOnElement(addInvoiceButton);
 }
 public void enterInvoiceDueDate(String excelFilePath) throws IOException
 {
-//	String dueDate = ExcelUtilities.getDateValue(1, 1, excelFilePath, "InvoicePage");
-//	PageUtility.enterText(invoiceDueDateField, dueDate);
-	PageUtility.clickOnElement(invoiceDueDateField);
-	PageUtility.clickOnElement(nextMonth);
-	PageUtility.clickOnElement(dateFromPicker);
+//	String dueDate = excelUtil.getDateValue(1, 1, excelFilePath, "InvoicePage");
+//	pageUtil.enterText(invoiceDueDateField, dueDate);
+	pageUtil.clickOnElement(invoiceDueDateField);
+	pageUtil.clickOnElement(nextMonth);
+	pageUtil.clickOnElement(dateFromPicker);
 	
 }
 public String selectClientfromClientDropdown()
 {
-	WaitUtility.waitForElementToBePresent(driver, clientDropdown);
-	PageUtility.clickOnElement(clientDropdown);
-	String expectedClient = PageUtility.getTextFromElement(clientSelect);
-	PageUtility.clickOnElement(clientSelect);
+	waitUtil.waitForElementToBePresent(driver, clientDropdown);
+	pageUtil.clickOnElement(clientDropdown);
+	String expectedClient = pageUtil.getTextFromElement(clientSelect);
+	pageUtil.clickOnElement(clientSelect);
 	
 	return expectedClient;
 }
 
 public void clickOnSaveInAddInvoicePopUp()
 {
-	//PageUtility.clickOnElement(saveButtonForAddInvoicePopUp);
-	WaitUtility.waitForElementToBeClickable(driver, saveButtonForAddInvoicePopUp);
-	PageUtility.clickOnElement(saveButtonForAddInvoicePopUp);
-	//PageUtility.clickOnElementUsingJavaScriptExecutor(saveButtonForAddInvoicePopUp, driver);
+	//pageUtil.clickOnElement(saveButtonForAddInvoicePopUp);
+	waitUtil.waitForElementToBeClickable(driver, saveButtonForAddInvoicePopUp);
+	pageUtil.clickOnElement(saveButtonForAddInvoicePopUp);
+	//pageUtil.clickOnElementUsingJavaScriptExecutor(saveButtonForAddInvoicePopUp, driver);
 	
 }
 public void clickOnAddItem()
-{WaitUtility.waitForElementToBeClickable(driver, addItemButton);
-	PageUtility.clickOnElement(addItemButton);
+{waitUtil.waitForElementToBeClickable(driver, addItemButton);
+	pageUtil.clickOnElement(addItemButton);
 }
 public void selectItemFromItemDropdown()
-{WaitUtility.waitForElementToBeClickable(driver, itemDropdown);
-	PageUtility.clickOnElement(itemDropdown);
-	PageUtility.clickOnElement(selectItemFromDropdown);
+{waitUtil.waitForElementToBeClickable(driver, itemDropdown);
+	pageUtil.clickOnElement(itemDropdown);
+	pageUtil.clickOnElement(selectItemFromDropdown);
 }
 
 public String enterQuantity(String excelFilePath) throws IOException
 {
-	String quantity = ExcelUtilities.getNumeric(3,1, excelFilePath, "InvoicePage");
-	PageUtility.enterText(quantityField, quantity);
+	String quantity = excelUtil.getNumeric(3,1, excelFilePath, "InvoicePage");
+	pageUtil.enterText(quantityField, quantity);
 return quantity;
 }
 public String getQuantityUnit() throws IOException
 {
-	String qtyUnit = PageUtility.getTextFromElement(quantityUnit);
+	String qtyUnit = pageUtil.getTextFromElement(quantityUnit);
 	System.out.println(qtyUnit);
 return qtyUnit;
 }
 
 public void clickOnSubmitFromAddItemPopUp()
-{WaitUtility.waitForElementToBeClickable(driver, submitAddItemPopUp);
-	PageUtility.clickOnElement(submitAddItemPopUp);
+{waitUtil.waitForElementToBeClickable(driver, submitAddItemPopUp);
+	pageUtil.clickOnElement(submitAddItemPopUp);
 }
 public String getActualClient()
 {
-	PageUtility.pageRefresh(driver);
-	String actClient = PageUtility.getTextFromElement(actualClient);
+	pageUtil.pageRefresh(driver);
+	String actClient = pageUtil.getTextFromElement(actualClient);
 	return actClient;
 }
 public String getActualQuantity()
 {
-	
-	String actualQty = PageUtility.getTextFromElement(actualQuantity);
+	waitUtil.waitForElementToBePresent(driver, actualQuantity);
+	String actualQty = pageUtil.getTextFromElement(actualQuantity);
 	return actualQty;
 }
 }

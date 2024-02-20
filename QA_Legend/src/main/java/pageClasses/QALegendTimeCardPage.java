@@ -5,12 +5,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+
+import utilities.DateUtility;
+import utilities.ExcelUtilities;
+import utilities.FakerUtility;
 import utilities.PageUtility;
 import utilities.WaitUtility;
 
 public class QALegendTimeCardPage {
 
     WebDriver driver;
+    PageUtility pageUtil = new PageUtility();
+	DateUtility dateUtil = new DateUtility();
+	ExcelUtilities excelUtil = new ExcelUtilities();
+	WaitUtility waitUtil = new WaitUtility();
+	FakerUtility fakerUtil = new FakerUtility();
 //	@FindBy(xpath = "//span[text()='Time cards']")
 //	WebElement timeCardButton;
 	@FindBy(xpath = "//a[text()='Clock In / Out']")
@@ -48,20 +57,21 @@ public class QALegendTimeCardPage {
 //	public void clickOnTimeCardButton()
 //	{
 //		WaitUtility.waitForElementToBeClickable(driver, timeCardButton);
-//		PageUtility.clickOnElement(timeCardButton);
+//		pageUtil.clickOnElement(timeCardButton);
 //	}
 	public void clickOnClockInClockOutTab()
-	{PageUtility.pageRefresh(driver);
-		PageUtility.clickOnElement(clockInClockOutTab);
+	{pageUtil.pageRefresh(driver);
+		pageUtil.clickOnElement(clockInClockOutTab);
 	}
 	
 	public void enterTextInSearchField(String profileName)
 	{
-		PageUtility.enterText(searchField, profileName);
+		pageUtil.enterText(searchField, profileName);
 	}
 	
 	public String getTextFromClockInClockOutStatus()
 	{
-		return PageUtility.getTextFromElement(clockInClockOutStatus);
+		waitUtil.waitForElementToBePresent(driver, clockInClockOutStatus);
+		return pageUtil.getTextFromElement(clockInClockOutStatus);
 	}
 }

@@ -4,23 +4,20 @@
   <listeners>
     <listener class-name="testCases.Listeners"/>
   </listeners>
-  <test thread-count="5" parallel="methods" name="Test(failed)">
+  <test thread-count="5" name="Test(failed)">
     <parameter name="browser" value="Chrome"/>
+    <groups>
+      <run>
+        <include name="smokeTest"/>
+      </run>
+    </groups>
     <classes>
       <class name="testCases.QALegendTestCases">
         <methods>
-          <include name="clockInClockOut"/>
-          <include name="initialization"/>
-          <include name="addTeamMembers"/>
           <include name="applyLeave"/>
-          <include name="messageInCRM"/>
           <include name="addInvoice"/>
-          <include name="addTask"/>
-          <include name="tearDown"/>
-          <include name="notesPageCRM"/>
           <include name="addAnnouncements"/>
           <include name="addTickets"/>
-          <include name="loginCRM" invocation-numbers="0"/>
         </methods>
       </class> <!-- testCases.QALegendTestCases -->
     </classes>

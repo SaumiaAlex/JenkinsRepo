@@ -30,7 +30,7 @@ import utilities.ExcelUtilities;
 public class QALegendTestCases extends BaseClass
 {
 	public WebDriver driver;
-	
+	public final String excelFilePath = "//src//main//java//testData//testData_Excel.xlsx";
 	 FileInputStream fis;
 	 Properties prop;
 	 QALegendLoginPage loginPage;
@@ -44,6 +44,7 @@ public class QALegendTestCases extends BaseClass
 	 QALegendAnnouncementsPAge announcementsPage;
 	 QALegendMessagePage messagePage;
 	 QALegendTicketsPage ticketsPage;	
+	 ExcelUtilities excelRead;
 	
 	
 	
@@ -54,6 +55,8 @@ public class QALegendTestCases extends BaseClass
 	public void initialization(String browser) throws Exception
 	{System.out.println("Before method");
 		driver = browserInitialization(browser);
+		
+		
 		fis = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\testData\\testData.properties");
 		prop = new Properties();
 		loginPage = new QALegendLoginPage(driver);
@@ -67,6 +70,9 @@ public class QALegendTestCases extends BaseClass
 		announcementsPage = new QALegendAnnouncementsPAge(driver);
 		messagePage = new QALegendMessagePage(driver);
 		ticketsPage = new QALegendTicketsPage(driver);
+		excelRead = new ExcelUtilities();
+		
+		
 		
 		prop.load(fis);
 	 driver.get(prop.getProperty("url"));
@@ -78,7 +84,7 @@ public class QALegendTestCases extends BaseClass
 	}
 	
 	
-	@AfterMethod
+	//@AfterMethod
 	public void tearDown()
 	{
 		driver.quit();
@@ -86,7 +92,7 @@ public class QALegendTestCases extends BaseClass
 	
 	
 	
-	@Test(priority =1,groups= {"regression"}, dataProvider = "login_Details")
+	@Test(groups= {"regression"}, dataProvider = "login_Details")
 	public void loginCRM(String username, String password)
 	{
 	
@@ -114,31 +120,27 @@ public class QALegendTestCases extends BaseClass
 
 		}
 		
-		
-//		loginPage.enterUsername(prop.getProperty("username"));
-//		loginPage.enterPassword(prop.getProperty("password"));
-//		loginPage.clickLoginButton();
-//		String expectedUserName = prop.getProperty("profileName");
-//		String actulalUserName = homePage.getProfileName();
-//		Assert.assertEquals(actulalUserName, expectedUserName);
 
 	}
 	@DataProvider (name="login_Details")
 	public Object[][] testData() throws IOException
 	{
 		Object[][] loginData = new Object[4][2];
-		loginData[0][0] = ExcelUtilities.getString(1, 0, excelFilePath, "LoginPage");
-		loginData[0][1] = ExcelUtilities.getNumeric(1, 1, excelFilePath, "LoginPage");
-		loginData[1][0] = ExcelUtilities.getString(2, 0, excelFilePath, "LoginPage");
-		loginData[1][1] = ExcelUtilities.getString(2, 1, excelFilePath, "LoginPage");
-		loginData[2][0] = ExcelUtilities.getString(3, 0, excelFilePath, "LoginPage");
-		loginData[2][1] = ExcelUtilities.getNumeric(3, 1, excelFilePath, "LoginPage");
-		loginData[3][0] = ExcelUtilities.getString(4, 0, excelFilePath, "LoginPage");
-		loginData[3][1] = ExcelUtilities.getString(4, 1, excelFilePath, "LoginPage");
+		loginData[0][0] = excelRead.getString(1, 0, excelFilePath, "LoginPage");
+		loginData[0][1] = excelRead.getNumeric(1, 1, excelFilePath, "LoginPage");
+		loginData[1][0] = excelRead.getString(2, 0, excelFilePath, "LoginPage");
+		loginData[1][1] = excelRead.getString(2, 1, excelFilePath, "LoginPage");
+		loginData[2][0] = excelRead.getString(3, 0, excelFilePath, "LoginPage");
+		loginData[2][1] = excelRead.getNumeric(3, 1, excelFilePath, "LoginPage");
+		loginData[3][0] = excelRead.getString(4, 0, excelFilePath, "LoginPage");
+		loginData[3][1] = excelRead.getString(4, 1, excelFilePath, "LoginPage");
 		
 		return loginData;
 				}
-	@Test(priority =2,groups= {"smoke test"})
+	
+	//(priority =2,groups= {"smoke test"})
+	
+	@Test (retryAnalyzer = ReRun_FailedTestcases.class)
 	public void notesPageCRM() throws Exception
 	{
 		notesPage.clickOnNotesButton();
@@ -149,7 +151,7 @@ public class QALegendTestCases extends BaseClass
 		String actualNotesTitle  = notesPage.getActualTitle();
 		Assert.assertEquals(actualNotesTitle, expectedNotesTitle);
 	}
-	@Test(priority =3,groups= {"regression"})
+	@Test(groups= {"regression"})
 	public void clockInClockOut() throws IOException
 	{
 		String expectedNotes;
@@ -187,7 +189,7 @@ public class QALegendTestCases extends BaseClass
 			Assert.assertTrue(actualStatus.contains(expectedStatus));
 		}
 	}
-	@Test(priority =4,groups= {"smoke test"})
+	@Test(groups= {"smokeTest"})
 	public void applyLeave() throws IOException 
 	{
 		homePage.clickOnLeaveButton();
@@ -203,7 +205,7 @@ public class QALegendTestCases extends BaseClass
 		
 		Assert.assertEquals(actualLeaveReason, expectedLeaveReason);
 		}
-	@Test(priority =5,groups= {"regression"})
+	@Test(groups= {"regression"})
 	public void addTask() throws IOException 
 	{
 		homePage.clickOnOpenMyTaskPanel();
@@ -213,7 +215,7 @@ public class QALegendTestCases extends BaseClass
 		String actualTaskTitle=taskPage.clickOnSaveAddTaskPopUp();
 		Assert.assertEquals(actualTaskTitle, expectedTaskTitle);
 	}
-	@Test(priority =6,groups= {"smoke test"})
+	@Test(groups= {"smokeTest"})
 public void addInvoice() throws IOException
 {
 	homePage.clickOnInvoiceButton();
@@ -237,7 +239,7 @@ public void addInvoice() throws IOException
 	
 	
 }
-	@Test(priority =7,groups = {"regression"})
+	@Test(groups = {"regression"})
 	public void addTeamMembers() throws IOException
 	{homePage.clickOnTeamMemebersButton();
 		teamMembersPage.clickOnAddMembersButton();
@@ -258,7 +260,7 @@ public void addInvoice() throws IOException
 		  Assert.assertEquals(memberDetails[2], expectedEmail);
 		 
 	}
-	@Test(priority =8,groups= {"smoke test"})
+	@Test(groups= {"smokeTest"})
 	public void addAnnouncements() throws IOException
 	{
 		homePage.clickOnAnnouncementsButton();
@@ -273,7 +275,7 @@ public void addInvoice() throws IOException
 		Assert.assertEquals(actualTitle, expectedTitle);
 		
 	}
-	@Test(priority =9,groups= {"regression"})
+	@Test(groups= {"regression"})
 	public void messageInCRM() throws IOException
 	{
 		homePage.clickOnMessageButton();
@@ -290,7 +292,7 @@ public void addInvoice() throws IOException
 		Assert.assertTrue(actualMessage.contains(expMessage)&&actualSubject.contains(expSubject));
 		
 	}
-	@Test(priority=10,groups= {"smoke test"})
+	@Test(groups= {"smokeTest"})
 	
 	public void addTickets() throws IOException
 	{

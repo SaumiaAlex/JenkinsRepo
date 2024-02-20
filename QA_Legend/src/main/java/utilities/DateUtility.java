@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class DateUtility {
 	
-	public static String getCurrentDate()
+	public  String getCurrentDate()
 	{
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");

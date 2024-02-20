@@ -1,21 +1,25 @@
 package pageClasses;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.DateUtility;
 import utilities.ExcelUtilities;
 import utilities.FakerUtility;
 import utilities.PageUtility;
 import utilities.WaitUtility;
 
+
 public class QALegendTeamMembersPage {
 	WebDriver driver;
+	PageUtility pageUtil = new PageUtility();
+	DateUtility dateUtil = new DateUtility();
+	ExcelUtilities excelUtil = new ExcelUtilities();
+	WaitUtility waitUtil = new WaitUtility();
+	FakerUtility fakerUtil = new FakerUtility();
 	
 	@FindBy(xpath = "//a[@title='Add member']")
 WebElement addMembersButton;
@@ -71,65 +75,65 @@ WebElement emailInTable;
 	
 	public void clickOnAddMembersButton()
 	{
-		PageUtility.clickOnElement(addMembersButton);
+		pageUtil.clickOnElement(addMembersButton);
 	}
 	public String enterFirstName(String excelFilePath) throws IOException
 	{
-		String firstName = ExcelUtilities.getString(0, 1, excelFilePath, "TeamMembers")+FakerUtility.randomNumberCreation();
-		PageUtility.enterText(firstNameField, firstName);
+		String firstName = excelUtil.getString(0, 1, excelFilePath, "TeamMembers")+fakerUtil.randomNumberCreation();
+		pageUtil.enterText(firstNameField, firstName);
 		return firstName;
 	}
 	public String enterLastName(String excelFilePath) throws IOException
 	{
-		String lastName = ExcelUtilities.getString(1, 1, excelFilePath, "TeamMembers")+FakerUtility.randomNumberCreation();
-		PageUtility.enterText(lastNameField, lastName);
+		String lastName = excelUtil.getString(1, 1, excelFilePath, "TeamMembers")+fakerUtil.randomNumberCreation();
+		pageUtil.enterText(lastNameField, lastName);
 		return lastName;
 	}
 	
 	public void clickOnNextButton()
 	{
-		PageUtility.clickOnElement(nextButton);
+		pageUtil.clickOnElement(nextButton);
 	}
 	public String enterJobTitle(String excelFilePath) throws IOException
 	{
-		String jobTitle= ExcelUtilities.getString(2, 1, excelFilePath, "TeamMembers")+FakerUtility.randomNumberCreation();
-		PageUtility.enterText(jobTitleField, jobTitle);
+		String jobTitle= excelUtil.getString(2, 1, excelFilePath, "TeamMembers")+fakerUtil.randomNumberCreation();
+		pageUtil.enterText(jobTitleField, jobTitle);
 		return jobTitle;
 	}
 	
 	public String enterEmail(String excelFilePath) throws IOException
 	{
-		String email = FakerUtility.randomNumberCreation()+ExcelUtilities.getString(3, 1, excelFilePath, "TeamMembers");
-		PageUtility.enterText(emailField, email);
+		String email = fakerUtil.randomNumberCreation()+excelUtil.getString(3, 1, excelFilePath, "TeamMembers");
+		pageUtil.enterText(emailField, email);
 		return email;
 	}
 	public void enterPassword(String excelFilePath) throws IOException
 	{
-		String password = ExcelUtilities.getString(4, 1, excelFilePath, "TeamMembers");
-		PageUtility.enterText(passwordField, password);
+		String password = excelUtil.getString(4, 1, excelFilePath, "TeamMembers");
+		pageUtil.enterText(passwordField, password);
 	}
 	public void clickOnSaveButton()
 	{
-		PageUtility.clickOnElement(saveButton);
-		PageUtility.pageRefresh(driver);
+		pageUtil.clickOnElement(saveButton);
+		pageUtil.pageRefresh(driver);
 	}
 	public void searchForTeamMember(String expectedTeamMember)
 	{
-		//WaitUtility.waitForElementToBePresent(driver, teamMembersSearchBox);
-		WaitUtility.waitForElementToBeClickable(driver, teamMembersSearchBox);
-		//PageUtility.clickOnElement(teamMembersSearchBox);
-		PageUtility.enterText(teamMembersSearchBox, expectedTeamMember);
-		//PageUtility.enterTextUsingActionClass(driver, teamMembersSearchBox, expectedTeamMember);
+		//waitUtil.waitForElementToBePresent(driver, teamMembersSearchBox);
+		waitUtil.waitForElementToBeClickable(driver, teamMembersSearchBox);
+		//pageUtil.clickOnElement(teamMembersSearchBox);
+		pageUtil.enterText(teamMembersSearchBox, expectedTeamMember);
+		//pageUtil.enterTextUsingActionClass(driver, teamMembersSearchBox, expectedTeamMember);
 	}
 	public String[] actualTeamMemberDetails()
 	{
-	WaitUtility.waitForElementToBePresent(driver,nameInTable);
+	waitUtil.waitForElementToBePresent(driver,nameInTable);
 		
-		String actualMemberName = PageUtility.getTextFromElement(nameInTable);
+		String actualMemberName = pageUtil.getTextFromElement(nameInTable);
 		System.out.println(actualMemberName);
-		String actualJobTitle = PageUtility.getTextFromElement(jobTitleInTable);
+		String actualJobTitle = pageUtil.getTextFromElement(jobTitleInTable);
 		System.out.println(actualJobTitle);
-		String actualEmail = PageUtility.getTextFromElement(emailInTable);
+		String actualEmail = pageUtil.getTextFromElement(emailInTable);
 		System.out.println(actualEmail);
 		String memberDetails[]= {actualMemberName,actualJobTitle,actualEmail};
 		return memberDetails;

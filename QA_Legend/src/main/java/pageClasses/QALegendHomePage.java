@@ -12,14 +12,23 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import utilities.DateUtility;
 import utilities.ExcelUtilities;
 import utilities.FakerUtility;
 import utilities.PageUtility;
 import utilities.WaitUtility;
 
+
 public class QALegendHomePage {
 	
 	WebDriver driver;
+	
+	PageUtility pageUtil = new PageUtility();
+	DateUtility dateUtil = new DateUtility();
+	ExcelUtilities excelUtil = new ExcelUtilities();
+	WaitUtility waitUtil = new WaitUtility();
+	FakerUtility fakerUtil = new FakerUtility();
+	
 	@FindBy(id = "user-dropdown-icon") 
 	WebElement userNameDropDown;
 	@FindBy(xpath = "//a[text()=' Sign Out']")
@@ -80,19 +89,19 @@ WebElement teamMembersButton;
 	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 		wait.until(ExpectedConditions.visibilityOf(userNameDropDown));
-		PageUtility.clickOnElement(userNameDropDown);
-		PageUtility.clickOnElement(signOutButton);
+		pageUtil.clickOnElement(userNameDropDown);
+		pageUtil.clickOnElement(signOutButton);
 	}
  public String getProfileName()
  {
- 	return PageUtility.getTextFromElement(userNameDropDown);
+ 	return pageUtil.getTextFromElement(userNameDropDown);
  }
  
  //Clock In Clock Out Operations
  public boolean clockOutDisplayedOrNot()
  {
-	 WaitUtility.waitForElementToBePresent(driver, clockOutClockInPanel);
-	if(PageUtility.getTextFromElement(clockOutClockInPanel).contains("Clock Out"))
+	 waitUtil.waitForElementToBePresent(driver, clockOutClockInPanel);
+	if(pageUtil.getTextFromElement(clockOutClockInPanel).contains("Clock Out"))
 	{
 		return true;
 	}
@@ -103,70 +112,70 @@ WebElement teamMembersButton;
  }
 	public String getTextFromClockOutClockInPanel() 
 	{
-		WaitUtility.waitForElementToBePresent(driver, clockOutClockInPanel);
-		return PageUtility.getTextFromElement(clockedInText);
+		//waitUtil.waitForElementToBePresent(driver, clockOutClockInPanel);
+		return pageUtil.getTextFromElement(clockedInText);
 	}
  
  public void clickOnClockOut()
  {
-	 WaitUtility.waitForElementToBeClickable(driver, clockOutButton);
-	 PageUtility.clickOnElement(clockOutButton);
+	 waitUtil.waitForElementToBeClickable(driver, clockOutButton);
+	 pageUtil.clickOnElement(clockOutButton);
 	 
  }
  public String enterNotesInClockOutPopUp(String excelFilePath) throws IOException
  {
-	 WaitUtility.waitForElementToBeClickable(driver, clockOutNotesTextField);
-	 String notes = ExcelUtilities.getString(0, 1, excelFilePath, "ClockInOut")+ FakerUtility.randomNumberCreation();
-	 PageUtility.enterText(clockOutNotesTextField, notes);
+	 waitUtil.waitForElementToBeClickable(driver, clockOutNotesTextField);
+	 String notes = excelUtil.getString(0, 1, excelFilePath, "ClockInOut")+ fakerUtil.randomNumberCreation();
+	 pageUtil.enterText(clockOutNotesTextField, notes);
 	 return notes;
  }
 public void saveNotesInClockOutPopUp() 
 {
-	WaitUtility.waitForElementToBeClickable(driver, clockOutNotesSaveButton);
-	PageUtility.clickOnElement(clockOutNotesSaveButton);
-	PageUtility.pageRefresh(driver);
+	waitUtil.waitForElementToBeClickable(driver, clockOutNotesSaveButton);
+	pageUtil.clickOnElement(clockOutNotesSaveButton);
+	pageUtil.pageRefresh(driver);
 }
 
 public void clickOnClockIn() 
 {
-	WaitUtility.waitForElementToBeClickable(driver, clockInButton);
-	PageUtility.clickOnElement(clockInButton);
-	PageUtility.pageRefresh(driver);
+	waitUtil.waitForElementToBeClickable(driver, clockInButton);
+	pageUtil.clickOnElement(clockInButton);
+	pageUtil.pageRefresh(driver);
 }
 
 public void clickOnTimeCardButton()
 {
-	WaitUtility.waitForElementToBeClickable(driver, timeCardButton);
-	PageUtility.clickOnElement(timeCardButton);
+	waitUtil.waitForElementToBeClickable(driver, timeCardButton);
+	pageUtil.clickOnElement(timeCardButton);
 }
 
 public void clickOnLeaveButton()
 {
-	PageUtility.clickOnElement(leaveButton);
+	pageUtil.clickOnElement(leaveButton);
 }
 public void clickOnOpenMyTaskPanel()
 {
-	PageUtility.clickOnElement(openMyTaskPanel);
+	pageUtil.clickOnElement(openMyTaskPanel);
 }
 public void clickOnInvoiceButton()
 {
-	PageUtility.clickOnElement(invoiceButton);
+	pageUtil.clickOnElement(invoiceButton);
 }
 public void clickOnTeamMemebersButton()
 {
-	PageUtility.clickOnElement(teamMembersButton);
+	pageUtil.clickOnElement(teamMembersButton);
 }
 public void clickOnAnnouncementsButton()
 {
-	PageUtility.clickOnElement(announcementsButton);
+	pageUtil.clickOnElement(announcementsButton);
 }
 public void clickOnMessageButton()
 {
-	PageUtility.clickOnElement(messageButton);
+	pageUtil.clickOnElement(messageButton);
 }
 public void clickOnTicketsButton()
 {
-	PageUtility.clickOnElement(ticketsButton);
+	pageUtil.clickOnElement(ticketsButton);
 }
 public String noOfTickets()
 {
@@ -174,12 +183,12 @@ public String noOfTickets()
 }
 public void clickOnDashboardButton()
 {
-	PageUtility.clickOnElement(dashboardButton);
+	pageUtil.clickOnElement(dashboardButton);
 }
 
 public boolean toCheckLoggedInorNot()
 {
-	PageUtility.pageRefresh(driver);
+	pageUtil.pageRefresh(driver);
 	int size = dashboardImage.size();
 	if(size >1)
 	{

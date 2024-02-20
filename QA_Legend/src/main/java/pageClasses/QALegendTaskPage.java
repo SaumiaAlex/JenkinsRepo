@@ -7,13 +7,22 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.DateUtility;
 import utilities.ExcelUtilities;
 import utilities.FakerUtility;
 import utilities.PageUtility;
+import utilities.WaitUtility;
+
 
 public class QALegendTaskPage {
 	
 	WebDriver driver;
+	PageUtility pageUtil = new PageUtility();
+	DateUtility dateUtil = new DateUtility();
+	ExcelUtilities excelUtil = new ExcelUtilities();
+	WaitUtility waitUtil = new WaitUtility();
+	FakerUtility fakerUtil = new FakerUtility();
+	
 	@FindBy(xpath = "(//a[@title='Add task'])[2]")
 	WebElement addTaskButton;
 	@FindBy(xpath = "//input[@id='title']") 
@@ -64,15 +73,15 @@ public class QALegendTaskPage {
 
 	public void clickOnAddTaskButton() 
 	{
-		PageUtility.clickOnElement(addTaskButton);
+		pageUtil.clickOnElement(addTaskButton);
 		
 	}
 	
 
 	public String addTextToTitleField(String excelFieldPath) throws IOException 
 	{
-		String title = ExcelUtilities.getString(0, 1, excelFieldPath, "TaskPage")+FakerUtility.randomNumberCreation();
-		PageUtility.enterText(titleTextField, title);
+		String title = excelUtil.getString(0, 1, excelFieldPath, "TaskPage")+fakerUtil.randomNumberCreation();
+		pageUtil.enterText(titleTextField, title);
 		return title;
 		
 	}
@@ -80,16 +89,16 @@ public class QALegendTaskPage {
 	public void addProjectFromDropDown() throws IOException 
 	{
 		
-		PageUtility.clickOnElement(projectDropdown);
-		PageUtility.clickOnElement(projectName);
+		pageUtil.clickOnElement(projectDropdown);
+		pageUtil.clickOnElement(projectName);
 		
 	}
 	
 	public String clickOnSaveAddTaskPopUp()
 	{
-		PageUtility.clickOnElement(addTaskPopUpSaveButton);
-		PageUtility.pageRefresh(driver);
-		String title = PageUtility.getTextFromElement(actualTaskTitle);
+		pageUtil.clickOnElement(addTaskPopUpSaveButton);
+		pageUtil.pageRefresh(driver);
+		String title = pageUtil.getTextFromElement(actualTaskTitle);
 		return title;
 		
 	}

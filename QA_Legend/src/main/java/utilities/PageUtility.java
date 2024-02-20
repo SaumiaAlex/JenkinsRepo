@@ -17,172 +17,172 @@ import org.openqa.selenium.support.ui.Select;
 public class PageUtility {
 	
 	
-	public static void clickOnElement(WebElement element)
+	public  void clickOnElement(WebElement element)
 	{
 		element.click();
 	}
 	
-	public static void enterText(WebElement element, String value)
+	public  void enterText(WebElement element, String value)
 	{
 		element.sendKeys(value);
 	}
 	
-	public static String getTextFromElement(WebElement element) 
+	public  String getTextFromElement(WebElement element) 
 	{
 		return element.getText(); 
 	} 
 	
-	public static void clearText(WebElement element) 
+	public  void clearText(WebElement element) 
 	{ 
 		element.clear(); 
 	} 
-	public static boolean elementEnabled (WebElement element)
+	public  boolean elementEnabled (WebElement element)
 	{
 		return element.isEnabled();
 	}
-	public static boolean elementDisplayed (WebElement element)
+	public  boolean elementDisplayed (WebElement element)
 	{
 		return element.isDisplayed();
 		
 	}
-	public static void elementSubmit(WebElement element)
+	public  void elementSubmit(WebElement element)
 	{
 		element.submit();
 	}
-	public static String getAttributeValue(WebElement element,String attributeName) 
+	public  String getAttributeValue(WebElement element,String attributeName) 
 	{ 
 		return element.getAttribute(attributeName); 
 		} 
 	//Navigation keys
-	public static void pageRefresh(WebDriver driver)
+	public  void pageRefresh(WebDriver driver)
 	{
 	driver.navigate().refresh();
 	}
-	public static void navigateBack(WebDriver driver) 
+	public  void navigateBack(WebDriver driver) 
 	
 	{ driver.navigate().back();
 	} 
 	
-	public static void navigateForward(WebDriver driver)
+	public  void navigateForward(WebDriver driver)
 	{
 		driver.navigate().forward();
 	}
 	//Alert Handling
-	public static void acceptAlert(WebDriver driver) 
+	public  void acceptAlert(WebDriver driver) 
 	{ 
 		driver.switchTo().alert().accept(); 
 	} 
-	public static void dismissAlert(WebDriver driver)
+	public  void dismissAlert(WebDriver driver)
 	{
 		driver.switchTo().alert().dismiss();
 	}
-	public static void enterTextToAlert(WebDriver driver,String text)
+	public  void enterTextToAlert(WebDriver driver,String text)
 	{
 		driver.switchTo().alert().sendKeys(text);
 	}
 	//Action Class
-	public static void rightClickOnElement(WebDriver driver,WebElement element) 
+	public  void rightClickOnElement(WebDriver driver,WebElement element) 
 	{ 
 		Actions actions= new Actions(driver); 
 		actions.contextClick(element).build().perform(); 
 		} 
-	public static void rightClick(WebDriver driver) 
+	public  void rightClick(WebDriver driver) 
 	{ 
 		Actions actions= new Actions(driver); 
 		actions.contextClick().build().perform(); 
 	} 
-	public static void clickOnElementUsingActionClass(WebDriver driver,WebElement element) 
+	public  void clickOnElementUsingActionClass(WebDriver driver,WebElement element) 
 	{ 
 		Actions actions= new Actions(driver); 
 		actions.click(element);
 	} 
-	public static void dragAndDrop(WebDriver driver, WebElement source, WebElement target) {
+	public  void dragAndDrop(WebDriver driver, WebElement source, WebElement target) {
         Actions actions = new Actions(driver);
         actions.dragAndDrop(source, target).build().perform();
     }
 
-    public static void pressKey(WebDriver driver, Keys key) {
+    public  void pressKey(WebDriver driver, Keys key) {
         Actions actions = new Actions(driver);
         actions.sendKeys(key).build().perform();
     }
 
-    public static void keyDown(WebDriver driver, Keys key) {
+    public  void keyDown(WebDriver driver, Keys key) {
         Actions actions = new Actions(driver);
         actions.keyDown(key).build().perform();
     }
 
-    public static void keyUp(WebDriver driver, Keys key) {
+    public  void keyUp(WebDriver driver, Keys key) {
         Actions actions = new Actions(driver);
         actions.keyUp(key).build().perform();
     }
-    public static void doubleClick(WebDriver driver, WebElement element) 
+    public  void doubleClick(WebDriver driver, WebElement element) 
     {
         Actions actions = new Actions(driver);
         actions.doubleClick(element).build().perform();
         }
-    public static void clickAndHold(WebDriver driver, WebElement element) {
+    public  void clickAndHold(WebDriver driver, WebElement element) {
         Actions actions = new Actions(driver);
         actions.clickAndHold(element).build().perform();
         }
-	public static void enterTextUsingActionClass(WebDriver driver, WebElement element, String value)
+	public  void enterTextUsingActionClass(WebDriver driver, WebElement element, String value)
 	{ Actions actions = new Actions(driver);
 	actions.sendKeys(element, value);
 		
 	}
 	//Javascriptexecutor
 	
-	public static void clickOnElementUsingJavaScriptExecutor(WebElement element, WebDriver driver)
+	public  void clickOnElementUsingJavaScriptExecutor(WebElement element, WebDriver driver)
 	{
 		JavascriptExecutor jsc = (JavascriptExecutor)driver;
 		 jsc.executeScript("arguements[0].click()", element);
 
 	}
-	public static void scrollPageUsingJavaScriptExecutor (WebDriver driver)
+	public  void scrollPageUsingJavaScriptExecutor (WebDriver driver)
 	{
 		JavascriptExecutor jsc = (JavascriptExecutor)driver;
 		jsc.executeScript("window.scrollBy(0,250)", "");
 
 	}
-	public static void scrollPageToMiddleUsingJavaScriptExecutor (WebDriver driver)
+	public  void scrollPageToMiddleUsingJavaScriptExecutor (WebDriver driver)
 	{
 		JavascriptExecutor jsc = (JavascriptExecutor)driver;
 		jsc.executeScript("window.scrollBy(0,500)", "");
 
 	}
-	public static void scrollPageToBottomUsingJavaScriptExecutor (WebDriver driver)
+	public  void scrollPageToBottomUsingJavaScriptExecutor (WebDriver driver)
 	{
 		JavascriptExecutor jsc = (JavascriptExecutor)driver;
 		jsc.executeScript("window.scrollBy(0,1000)", "");
 
 	}
-	public static void scrollThePage(WebElement element,WebDriver driver)
+	public  void scrollThePage(WebElement element,WebDriver driver)
 	{
 		
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("arguments[0].scrollIntoView(true)",element);
 	}
 	//Selection Class
-	public static void selectItemFromDropdownbyIndex(WebElement element, int i)
+	public  void selectItemFromDropdownbyIndex(WebElement element, int i)
 	{
 		Select sc = new Select(element);
 		sc.selectByIndex(i);
 	
 		
 	}
-	public static void selectItemFromDropdownbyStringValue(WebElement element, String value)
+	public  void selectItemFromDropdownbyStringValue(WebElement element, String value)
 	{
 		Select sc = new Select(element);
 		sc.selectByValue(value);
 		
 	}
-	public static void selectItemFromDropdownbyVisibleText(WebElement element, String value)
+	public  void selectItemFromDropdownbyVisibleText(WebElement element, String value)
 	{
 		Select sc = new Select(element);
 		sc.selectByValue(value);
 		
 	}
 	//window handling
-	public static void windowHandling(WebDriver driver)
+	public  void windowHandling(WebDriver driver)
 	{
 		driver.getWindowHandle();
 		Set<String> handles = driver.getWindowHandles();
@@ -191,7 +191,7 @@ public class PageUtility {
 		String childtab = it.next();
 		driver.switchTo().window(childtab);
 	}
-    public static void switchWindowToParentTab(WebDriver driver)
+    public  void switchWindowToParentTab(WebDriver driver)
     {
     	driver.switchTo().defaultContent();
     }

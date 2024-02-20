@@ -9,13 +9,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.DateUtility;
 import utilities.ExcelUtilities;
 import utilities.FakerUtility;
 import utilities.PageUtility;
 import utilities.WaitUtility;
 
+
 public class QALegendTicketsPage {
 WebDriver driver;
+PageUtility pageUtil = new PageUtility();
+DateUtility dateUtil = new DateUtility();
+ExcelUtilities excelUtil = new ExcelUtilities();
+WaitUtility waitUtil = new WaitUtility();
+FakerUtility fakerUtil = new FakerUtility();
 	
 	@FindBy(xpath = "//span[text()='Print']")
 	WebElement buttonPrint;
@@ -83,73 +90,73 @@ WebDriver driver;
 	
 	public void clickOnAddTicket()
 	{
-		PageUtility.clickOnElement(addNewTicket);
+		pageUtil.clickOnElement(addNewTicket);
 	}
 	public String input_Title(String excelFilePath) throws IOException
 	{
-		String title = ExcelUtilities.getString(0, 1, excelFilePath, "TicketsPage")+FakerUtility.randomNumberCreation();
-		PageUtility.enterText(inputField_Title, title);
-		//PageUtility.clickOnElement(inputField_Title);
+		String title = excelUtil.getString(0, 1, excelFilePath, "TicketsPage")+fakerUtil.randomNumberCreation();
+		pageUtil.enterText(inputField_Title, title);
+		//pageUtil.clickOnElement(inputField_Title);
 		return title;
 	}
 	public String input_Description(String excelFilePath) throws IOException
 	{
-		WaitUtility.waitForElementToBePresent(driver, input_Description);
-		String description = ExcelUtilities.getString(1, 1, excelFilePath, "TicketsPage")+FakerUtility.randomNumberCreation();
-		WaitUtility.waitForElementToBePresent(driver, input_Description);
-		PageUtility.enterText(input_Description, description);
-		//PageUtility.clickOnElement(input_Description);
+		waitUtil.waitForElementToBePresent(driver, input_Description);
+		String description = excelUtil.getString(1, 1, excelFilePath, "TicketsPage")+fakerUtil.randomNumberCreation();
+		waitUtil.waitForElementToBePresent(driver, input_Description);
+		pageUtil.enterText(input_Description, description);
+		//pageUtil.clickOnElement(input_Description);
 		return description;
 	}
 	public void clickOnPrint()
 	{
-		PageUtility.clickOnElement(buttonPrint);
+		pageUtil.clickOnElement(buttonPrint);
 	}
 	
 	public void inputClient()
 	{
-		WaitUtility.waitForElementToBeClickable(driver, clientDropdown);
-		PageUtility.clickOnElement(clientDropdown);
-		PageUtility.clickOnElement(selectClient);
+		waitUtil.waitForElementToBeClickable(driver, clientDropdown);
+		pageUtil.clickOnElement(clientDropdown);
+		pageUtil.clickOnElement(selectClient);
 		
 	}
 
 	public void switchParentTab()
 	{
-		PageUtility.switchWindowToParentTab(driver);
+		pageUtil.switchWindowToParentTab(driver);
 	}
 	public void clickOnSave()
 	{
-		PageUtility.clickOnElement(clickOnSave);
+		pageUtil.clickOnElement(clickOnSave);
 	}
 	
 	public void searchForTicket(String title)
 	{
-		PageUtility.pageRefresh(driver);
-		PageUtility.enterText(searchField, title);
+		pageUtil.pageRefresh(driver);
+		pageUtil.enterText(searchField, title);
 	}
 	
 	public String getActualTicketTitle()
 	{
-		WaitUtility.waitForElementToBePresent(driver, actualTicketTitle);
-		return PageUtility.getTextFromElement(actualTicketTitle);
+		waitUtil.waitForElementToBePresent(driver, actualTicketTitle);
+		return pageUtil.getTextFromElement(actualTicketTitle);
 	}
 	
 	public void clickOnActualTicketTitle()
 	{
-		PageUtility.clickOnElement(actualTicketTitle);
+		pageUtil.clickOnElement(actualTicketTitle);
 	}
 	
 	public String getActualTicketDescription()
 	{
-		return PageUtility.getTextFromElement(actualDescription);
+		return pageUtil.getTextFromElement(actualDescription);
 	}
 	
 	public void listAllTicketsInTicketsPage()
 	{
-		PageUtility.navigateBack(driver);
-		PageUtility.clickOnElement(listDropdrown);
-		PageUtility.clickOnElement(selectAllfromDropdown);
+		pageUtil.navigateBack(driver);
+		pageUtil.clickOnElement(listDropdrown);
+		pageUtil.clickOnElement(selectAllfromDropdown);
 		
 	}
 	

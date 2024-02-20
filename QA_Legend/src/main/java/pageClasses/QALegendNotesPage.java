@@ -7,14 +7,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.DateUtility;
 import utilities.ExcelUtilities;
 import utilities.FakerUtility;
 import utilities.PageUtility;
 import utilities.WaitUtility;
 
+
 public class QALegendNotesPage {
 	
 	WebDriver driver;
+	PageUtility pageUtil = new PageUtility();
+	DateUtility dateUtil = new DateUtility();
+	ExcelUtilities excelUtil = new ExcelUtilities();
+	WaitUtility waitUtil = new WaitUtility();
+	FakerUtility fakerUtil = new FakerUtility();
 	
 @FindBy(xpath = "//span[text()='Notes']")
 WebElement notesButton;
@@ -60,29 +67,29 @@ public QALegendNotesPage(WebDriver driver) {
 
 public void clickOnNotesButton()
 {
-	PageUtility.clickOnElement(notesButton);
+	pageUtil.clickOnElement(notesButton);
 }
 
 public void clickOnAddNotesButton() 
 {
-	PageUtility.clickOnElement(addNotesButton);
+	pageUtil.clickOnElement(addNotesButton);
 }
 public String enterTitleInAddNotesPopUp(String excelFilePath) throws IOException 
 {
-	String titleText = ExcelUtilities.getString(1, 0, excelFilePath, "Notes")+ FakerUtility.randomNumberCreation();
-	PageUtility.enterText(enterTitle,titleText);
+	String titleText = excelUtil.getString(1, 0, excelFilePath, "Notes")+ fakerUtil.randomNumberCreation();
+	pageUtil.enterText(enterTitle,titleText);
 	return titleText;
 }
 public void clickOnSave()
 {
-	PageUtility.clickOnElement(saveButton);
+	pageUtil.clickOnElement(saveButton);
 }
 
 public String getActualTitle()
 {
-	PageUtility.pageRefresh(driver);
-	WaitUtility.waitForElementToBePresent(driver, actualTitle);
-	return PageUtility.getTextFromElement(actualTitle);
+	pageUtil.pageRefresh(driver);
+	waitUtil.waitForElementToBePresent(driver, actualTitle);
+	return pageUtil.getTextFromElement(actualTitle);
 }
 
 }

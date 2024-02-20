@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
+import org.openqa.selenium.io.FileHandler;
 
 import com.google.common.io.Files;
 
@@ -21,7 +21,7 @@ public class BaseClass {
 	public WebDriver driver;
 	
 	
-	public final String excelFilePath = "//src//main//java//testData//testData_Excel.xlsx";
+	
 	public WebDriver browserInitialization(String browserName) throws Exception
 	{
 		if(browserName.equalsIgnoreCase("Chrome"))
@@ -40,7 +40,7 @@ public class BaseClass {
 		{
 			throw new Exception("Invalid Name Exception");
 		}
-		driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);	
+		driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);	
 		return driver;
 		
 		 
@@ -53,7 +53,7 @@ public class BaseClass {
 		TakesScreenshot ts = (TakesScreenshot)driver; //to enable driver to take screenshot
 		File source = ts.getScreenshotAs(OutputType.FILE);//captures screenshot as file
 		String destinationFile = System.getProperty("user.dir")+"\\test-output\\"+testCaseName+".png";
-		Files.copy(source,new File(destinationFile));
+		FileHandler.copy(source,new File(destinationFile));
 		return destinationFile;
 		
 	}

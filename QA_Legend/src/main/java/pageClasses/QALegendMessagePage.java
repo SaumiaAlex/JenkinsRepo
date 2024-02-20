@@ -7,14 +7,22 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.DateUtility;
 import utilities.ExcelUtilities;
 import utilities.FakerUtility;
 import utilities.PageUtility;
 import utilities.WaitUtility;
 
+
 public class QALegendMessagePage {
 
 WebDriver driver;
+PageUtility pageUtil = new PageUtility();
+DateUtility dateUtil = new DateUtility();
+ExcelUtilities excelUtil = new ExcelUtilities();
+WaitUtility waitUtil = new WaitUtility();
+FakerUtility fakerUtil = new FakerUtility();
+
 	@FindBy(xpath = "//span[@id='select2-chosen-3']")
 	WebElement recepientDropDown;
 	@FindBy(xpath = "//a[text()='Compose']")
@@ -52,58 +60,58 @@ WebDriver driver;
 	
 	public void clickOnRecepientDropDown()
 	{
-		WaitUtility.waitForElementToBeClickable(driver, recepientDropDown);
-		//PageUtility.clickOnElementUsingJavaScriptExecutor(recepientDropDown, driver);
-		PageUtility.clickOnElement(recepientDropDown);
+		waitUtil.waitForElementToBeClickable(driver, recepientDropDown);
+		//pageUtil.clickOnElementUsingJavaScriptExecutor(recepientDropDown, driver);
+		pageUtil.clickOnElement(recepientDropDown);
 	}
 	
 	public void clickOnComposeButton()
-	{PageUtility.pageRefresh(driver);
-		WaitUtility.waitForElementToBeClickable(driver, composeButton);
-	//PageUtility.clickOnElementUsingJavaScriptExecutor(composeButton,driver);
-		PageUtility.clickOnElement(composeButton);
+	{pageUtil.pageRefresh(driver);
+		waitUtil.waitForElementToBeClickable(driver, composeButton);
+	//pageUtil.clickOnElementUsingJavaScriptExecutor(composeButton,driver);
+		pageUtil.clickOnElement(composeButton);
 	}
 	
 	public void selectRecepientFromDropdown()
-	{WaitUtility.waitForElementToBeClickable(driver, selectRecepient);
-		//PageUtility.clickOnElementUsingJavaScriptExecutor(selectRecepient,driver);
-	PageUtility.clickOnElement(selectRecepient);	
+	{waitUtil.waitForElementToBeClickable(driver, selectRecepient);
+		//pageUtil.clickOnElementUsingJavaScriptExecutor(selectRecepient,driver);
+	pageUtil.clickOnElement(selectRecepient);	
 	
 	}
 	public String enterSubjectInComposeMessagePopUp(String excelFilePath) throws IOException
 	{
-		String subject = ExcelUtilities.getString(0, 1, excelFilePath, "MessagePage")+FakerUtility.randomNumberCreation();
-		PageUtility.enterText(subjectField, subject);
+		String subject = excelUtil.getString(0, 1, excelFilePath, "MessagePage")+fakerUtil.randomNumberCreation();
+		pageUtil.enterText(subjectField, subject);
 		return subject;
 	}
 	public String enterMessagetInComposeMessagePopUp(String excelFilePath) throws IOException
 	{
-		String message = ExcelUtilities.getString(1, 1, excelFilePath, "MessagePage")+FakerUtility.randomNumberCreation();
-		PageUtility.enterText(messageField, message);
+		String message = excelUtil.getString(1, 1, excelFilePath, "MessagePage")+fakerUtil.randomNumberCreation();
+		pageUtil.enterText(messageField, message);
 		return message;
 	}
 	public void clickOnSaveButton()
 	{
-		PageUtility.clickOnElement(saveButton);
+		pageUtil.clickOnElement(saveButton);
 	}
 	public void clickOnSentItems()
 	{
-		PageUtility.pageRefresh(driver);
-		WaitUtility.waitForElementToBeClickable(driver, sentItemsButton);
-		PageUtility.clickOnElement(sentItemsButton);
+		pageUtil.pageRefresh(driver);
+		waitUtil.waitForElementToBeClickable(driver, sentItemsButton);
+		pageUtil.clickOnElement(sentItemsButton);
 	}
 	public void clickOnTheMessageSentFromSentItems()
-	{WaitUtility.waitForElementToBePresent(driver, sentMessage);
-		PageUtility.clickOnElement(sentMessage);
+	{waitUtil.waitForElementToBePresent(driver, sentMessage);
+		pageUtil.clickOnElement(sentMessage);
 	}
 	public String getActualSubject()
 	{
-		String actSubject = PageUtility.getTextFromElement(actualSubject);
+		String actSubject = pageUtil.getTextFromElement(actualSubject);
 		return actSubject;
 	}
 	public String getActualMessage()
 	{
-		String actMessage = PageUtility.getTextFromElement(actualMessage);
+		String actMessage = pageUtil.getTextFromElement(actualMessage);
 		return actMessage;
 	}
 }

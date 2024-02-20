@@ -12,12 +12,19 @@ import org.openqa.selenium.support.ui.Select;
 
 import utilities.DateUtility;
 import utilities.ExcelUtilities;
+import utilities.FakerUtility;
 import utilities.PageUtility;
 import utilities.WaitUtility;
+
 
 public class QALegendLeavePage {
 
 	WebDriver driver;
+	PageUtility pageUtil = new PageUtility();
+	DateUtility dateUtil = new DateUtility();
+	ExcelUtilities excelUtil = new ExcelUtilities();
+	WaitUtility waitUtil = new WaitUtility();
+	FakerUtility fakerUtil = new FakerUtility();
 @FindBy(xpath = "(//a[@class='btn btn-default'])[1]")
 WebElement applyLeaveButton;
 @FindBy(xpath = "(//a[@class='btn btn-default'])[2]")
@@ -75,65 +82,65 @@ public QALegendLeavePage(WebDriver driver) {
 
 public void clickOnApplyLeaveButton()
 {
-	PageUtility.clickOnElement(applyLeaveButton);
+	pageUtil.clickOnElement(applyLeaveButton);
 }
 public void clickOnLeaveTypeDropDown() 
 {
-	PageUtility.clickOnElement(leaveTypeDropDown);
+	pageUtil.clickOnElement(leaveTypeDropDown);
 		
 }
 
 public void clickOnCasualLeave()
 {
-	WaitUtility.waitForElementToBePresent(driver, casualLeave);
-	PageUtility.clickOnElement(casualLeave);
+	waitUtil.waitForElementToBePresent(driver, casualLeave);
+	pageUtil.clickOnElement(casualLeave);
 }
 
 public void clickOnDateField()
 {
-	PageUtility.clickOnElement(dateField);
+	pageUtil.clickOnElement(dateField);
 	
 }
 public void enterDate(String excelFilePath) throws IOException
 {
-	String leaveDate = DateUtility.getCurrentDate();
-	PageUtility.enterText(dateField, leaveDate);
+	String leaveDate = dateUtil.getCurrentDate();
+	pageUtil.enterText(dateField, leaveDate);
 			
 }
 public void clickOnApplyLeaveInPopUp()
 {
-	PageUtility.clickOnElement(applyLeaveButtonInPopUp);
+	pageUtil.clickOnElement(applyLeaveButtonInPopUp);
 
 }
 
 public String enterReasonForLeave(String excelFilePath) throws IOException
 {
-	String reason = ExcelUtilities.getString(1, 1, excelFilePath, "LeavePage");
-	PageUtility.enterText(reasonTextField, reason);
+	String reason = excelUtil.getString(1, 1, excelFilePath, "LeavePage");
+	pageUtil.enterText(reasonTextField, reason);
 	return reason;
 }
 public void clickOnDropdownToListAll()
 {
-	PageUtility.pageRefresh(driver);
-	WaitUtility.waitForElementToBeClickable(driver, dropDownToShowAll);
-	PageUtility.clickOnElement(dropDownToShowAll);
+	pageUtil.pageRefresh(driver);
+	waitUtil.waitForElementToBeClickable(driver, dropDownToShowAll);
+	pageUtil.clickOnElement(dropDownToShowAll);
 }
 public void clickOnAllfromDropdownToListAll()
 {
 	
-	WaitUtility.waitForElementToBePresent(driver, selectAllFromDropDown);
-	PageUtility.clickOnElement(selectAllFromDropDown);
+	waitUtil.waitForElementToBePresent(driver, selectAllFromDropDown);
+	pageUtil.clickOnElement(selectAllFromDropDown);
 }
 public String clickOnApplicationDetail()
 {
-	//WaitUtility.waitForListOfElements(driver, applicationDetails);
+	//waitUtil.waitForListOfElements(driver, applicationDetails);
 	
 	int i = applicationDetails.size();
 	WebElement element =driver.findElement(By.xpath("("+"//a[@title='Application details']"+")"+"["+i+"]"));
-	PageUtility.scrollThePage(element, driver);
-	WaitUtility.waitForElementToBeClickable(driver, element);
+	pageUtil.scrollThePage(element, driver);
+	waitUtil.waitForElementToBeClickable(driver, element);
 	element.click();
-	String actualLeaveReason = PageUtility.getTextFromElement(resonForLeave);
+	String actualLeaveReason = pageUtil.getTextFromElement(resonForLeave);
 	return actualLeaveReason;
 	
 }

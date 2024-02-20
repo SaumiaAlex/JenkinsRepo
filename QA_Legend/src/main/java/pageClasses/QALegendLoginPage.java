@@ -5,12 +5,22 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.DateUtility;
+import utilities.ExcelUtilities;
+import utilities.FakerUtility;
 import utilities.PageUtility;
 import utilities.WaitUtility;
+
 
 public class QALegendLoginPage {
 	
 WebDriver driver;
+PageUtility pageUtil = new PageUtility();
+DateUtility dateUtil = new DateUtility();
+ExcelUtilities excelUtil = new ExcelUtilities();
+WaitUtility waitUtil = new WaitUtility();
+FakerUtility fakerUtil = new FakerUtility();
+
 @FindBy(name = "email")
 WebElement usernameField;
 @FindBy(id = "password")
@@ -35,23 +45,23 @@ public QALegendLoginPage(WebDriver driver) {
 
 public void enterUsername(String username)
 {
-	PageUtility.enterText(usernameField, username);
+	pageUtil.enterText(usernameField, username);
 }
 
 public void enterPassword(String password)
 {
-	PageUtility.enterText(passwordField, password);
+	pageUtil.enterText(passwordField, password);
 }
 
 public void clickLoginButton()
 {
-	PageUtility.clickOnElement(loginButton);
+	pageUtil.clickOnElement(loginButton);
 }
 
 public String getTextFromLoginPage()
 {
-	WaitUtility.waitForElementToBePresent(driver, signInHeading);
-	String text = PageUtility.getTextFromElement(signInHeading);
+	waitUtil.waitForElementToBePresent(driver, signInHeading);
+	String text = pageUtil.getTextFromElement(signInHeading);
 	return text;
 }
 

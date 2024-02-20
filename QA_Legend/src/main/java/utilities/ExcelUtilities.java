@@ -10,14 +10,16 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.WebDriver;
 
 public class ExcelUtilities {
 	
-	public static XSSFWorkbook wb;// handles excel file
-	public static XSSFSheet sh;//handles sheets in ecel file
-	public static FileInputStream f;//to get file location, java inbuilt class
+
+	public  XSSFWorkbook wb;// handles excel file
+	public  XSSFSheet sh;//handles sheets in ecel file
+	public  FileInputStream f;//to get file location, java inbuilt class
 	
-	public static String getString(int i, int j, String filePath, String sheet) throws IOException
+	public  String getString(int i, int j, String filePath, String sheet) throws IOException
 	{
 		f = new FileInputStream(System.getProperty("user.dir")+ filePath);
 		wb = new XSSFWorkbook(f);
@@ -26,7 +28,7 @@ public class ExcelUtilities {
 		Cell c = r.getCell(j);
 		return c.getStringCellValue();
 	}
-	public static String getNumeric(int i, int j, String filePath, String sheet) throws IOException
+	public  String getNumeric(int i, int j, String filePath, String sheet) throws IOException
 	{
 		f = new FileInputStream(System.getProperty("user.dir")+ filePath);
 		wb = new XSSFWorkbook(f);
@@ -37,7 +39,7 @@ public class ExcelUtilities {
 		return String.valueOf(value);
 	}
 	
-	public static ArrayList<String> getString(String filePath, String sheetName) throws IOException
+	public  ArrayList<String> getString(String filePath, String sheetName) throws IOException
 	{
 		f = new FileInputStream(System.getProperty("user.dir")+ filePath);
 		wb = new XSSFWorkbook(f);

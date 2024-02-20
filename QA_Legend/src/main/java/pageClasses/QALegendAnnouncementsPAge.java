@@ -8,15 +8,24 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+
 import utilities.DateUtility;
 import utilities.ExcelUtilities;
+
 import utilities.FakerUtility;
 import utilities.PageUtility;
 import utilities.WaitUtility;
 
+
 public class QALegendAnnouncementsPAge {
 
 WebDriver driver;
+PageUtility pageUtil = new PageUtility();
+DateUtility dateUtil = new DateUtility();
+ExcelUtilities excelUtil = new ExcelUtilities();
+WaitUtility waitUtil = new WaitUtility();
+FakerUtility fakerUtil = new FakerUtility();
+
 	
 	@FindBy(xpath = "//a[@title='Add announcement']")
 WebElement addAnnouncementButton;
@@ -70,42 +79,42 @@ WebElement addAnnouncementButton;
 	
 	public void clickOnAddAnnouncementButton()
 	{
-		PageUtility.clickOnElement(addAnnouncementButton);
+		pageUtil.clickOnElement(addAnnouncementButton);
 	}
 	public String enterTitle(String excelFilePath) throws IOException
 	{
-		String title= ExcelUtilities.getString(0, 1, excelFilePath, "Announcements")+FakerUtility.randomNumberCreation();
-		PageUtility.enterText(titleField, title);
+		String title= excelUtil.getString(0, 1, excelFilePath, "Announcements")+fakerUtil.randomNumberCreation();
+		pageUtil.enterText(titleField, title);
 		return title;
 	}
 	public void enterStartDate(String excelFilePath) throws IOException
 	{
-		String startDate = DateUtility.getCurrentDate();
-		PageUtility.enterText(startDateField, startDate);
+		String startDate = dateUtil.getCurrentDate();
+		pageUtil.enterText(startDateField, startDate);
 	}
 	public void enterEndDate(String excelFilePath) throws IOException
 	{
-		String endDate = DateUtility.getCurrentDate() ;
-		PageUtility.enterText(endDateField, endDate);
+		String endDate = dateUtil.getCurrentDate() ;
+		pageUtil.enterText(endDateField, endDate);
 	}
 	public void clickOnSave()
 	{
 		
-		PageUtility.scrollThePage(saveButton, driver);
-		WaitUtility.waitForElementToBeClickable(driver, saveButton);
-		PageUtility.clickOnElement(saveButton);
+		pageUtil.scrollThePage(saveButton, driver);
+		waitUtil.waitForElementToBeClickable(driver, saveButton);
+		pageUtil.clickOnElement(saveButton);
 	}
 	public void goBackToAnnouncementsPage()
 	{
-		PageUtility.navigateBack(driver);
+		pageUtil.navigateBack(driver);
 	}
 	public void searchForExpectedAnnouncement(String expectedAnnouncement)
 	{
-		PageUtility.enterText(announcementsSearchBox, expectedAnnouncement);
+		pageUtil.enterText(announcementsSearchBox, expectedAnnouncement);
 	}
 	public String getTextOfActualAnnouncementTitle()
 	{
-		return PageUtility.getTextFromElement(announcementActualTitle);
+		return pageUtil.getTextFromElement(announcementActualTitle);
 		
 	}
 }

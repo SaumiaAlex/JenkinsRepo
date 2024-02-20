@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class FakerUtility 
 {
- public static int randomNumberCreation()
+ public int randomNumberCreation()
  {
 	 Random random = new Random();
 	 int randomNumber = random.nextInt(10000);
