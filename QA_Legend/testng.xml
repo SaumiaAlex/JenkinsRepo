@@ -3,27 +3,21 @@
 <suite name="Suite">
 	<groups>
 		<run>
-			<include name="regression"></include>
-			<!--<include name="smokeTest"></include>-->
+			<!--<include name="regression"></include>-->
+			<include name="smokeTest"></include>
 		</run>
 	</groups>
-	
 	<listeners>
 		<listener class-name="testCases.Listeners"></listener>
 	</listeners>
-	
-	
-  <test thread-count="2" name="Test">
-	  
-	  
-	   <parameter name = "browser" value = "Chrome"/>
-	   <classes>
-		   
+  <test thread-count="2" name="Test" parallel="methods">
+	  <parameter name="browser" value="Chrome"></parameter>
+    <classes>
       <class name="testCases.QALegendTestCases">
-		 <!--<methods>-->
+       <methods>
 			 
-		<!--<include name="loginCRM"></include>-->
-		<!--<include name="notesPageCRM"></include>-->
+		<!--<include name="loginCRM"></include>
+		<include name="notesPageCRM"></include>-->
 	<!--<include name="clockInClockOut"></include>-->
 	<!--<include name="applyLeave"></include>
 	<include name="addTask"></include>
@@ -32,10 +26,8 @@
 		<include name="addAnnouncements"></include>
 		<include name="messageInCRM"></include>
 		<include name="addTickets"></include>-->
-		<!-- </methods>-->
-	  </class>
-	  
-	  
+		 </methods>
+      </class>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

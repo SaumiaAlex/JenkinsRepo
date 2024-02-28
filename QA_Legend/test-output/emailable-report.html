@@ -9,25 +9,27 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Suite</th></tr>
-<tr><td><a href="#t0">Test</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num attn">4</td><td class="num">430</td><td>smokeTest</td><td></td></tr>
+<tr><td><a href="#t0">Test1</a></td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">62,585</td><td>smokeTest</td><td></td></tr>
+<tr class="stripe"><td><a href="#t1">Test2</a></td><td class="num">4</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">64,818</td><td>smokeTest</td><td></td></tr>
+<tr><th>Total</th><th class="num">7</th><th class="num">0</th><th class="num">0</th><th class="num attn">1</th><th class="num">127,403</th><th colspan="2"></th></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="4">testCases.QALegendTestCases</td><td><a href="#m0">addAnnouncements</a></td><td rowspan="1">1708439430231</td><td rowspan="1">54</td></tr><tr class="failedeven"><td><a href="#m1">addInvoice</a></td><td rowspan="1">1708439430166</td><td rowspan="1">5</td></tr><tr class="failedeven"><td><a href="#m2">addTickets</a></td><td rowspan="1">1708439430318</td><td rowspan="1">6</td></tr><tr class="failedeven"><td><a href="#m3">applyLeave</a></td><td rowspan="1">1708439429999</td><td rowspan="1">50</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Test1 &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">testCases.QALegendTestCases</td><td><a href="#m0">addTickets</a></td><td rowspan="1">1708611540125</td><td rowspan="1">8669</td></tr><tr><th colspan="4">Test1 &#8212; passed</th></tr><tr class="passedeven"><td rowspan="3">testCases.QALegendTestCases</td><td><a href="#m1">addAnnouncements</a></td><td rowspan="1">1708611511184</td><td rowspan="1">6780</td></tr><tr class="passedeven"><td><a href="#m2">addInvoice</a></td><td rowspan="1">1708611524345</td><td rowspan="1">8722</td></tr><tr class="passedeven"><td><a href="#m3">applyLeave</a></td><td rowspan="1">1708611557684</td><td rowspan="1">4832</td></tr></tbody>
+<tbody id="t1"><tr><th colspan="4">Test2 &#8212; passed</th></tr><tr class="passedeven"><td rowspan="4">testCases.QALegendTestCases</td><td><a href="#m4">addAnnouncements</a></td><td rowspan="1">1708611511734</td><td rowspan="1">6661</td></tr><tr class="passedeven"><td><a href="#m5">addInvoice</a></td><td rowspan="1">1708611528172</td><td rowspan="1">6440</td></tr><tr class="passedeven"><td><a href="#m6">addTickets</a></td><td rowspan="1">1708611543206</td><td rowspan="1">7788</td></tr><tr class="passedeven"><td><a href="#m7">applyLeave</a></td><td rowspan="1">1708611559051</td><td rowspan="1">4496</td></tr></tbody>
 </table>
-<h2>Test</h2><h3 id="m0">testCases.QALegendTestCases#addAnnouncements</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;pageClasses.QALegendHomePage.clickOnAnnouncementsButton()&quot; because &quot;this.homePage&quot; is null
-	at testCases.QALegendTestCases.addAnnouncements(QALegendTestCases.java:266)
+<h2>Test1</h2><h3 id="m0">testCases.QALegendTestCases#addTickets</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: expected:&lt;73&gt; but was:&lt;74&gt;
+	at testCases.QALegendTestCases.addTickets(QALegendTestCases.java:329)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-... Removed 27 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">testCases.QALegendTestCases#addInvoice</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;pageClasses.QALegendHomePage.clickOnInvoiceButton()&quot; because &quot;this.homePage&quot; is null
-	at testCases.QALegendTestCases.addInvoice(QALegendTestCases.java:221)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-... Removed 27 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">testCases.QALegendTestCases#addTickets</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;pageClasses.QALegendHomePage.clickOnTicketsButton()&quot; because &quot;this.homePage&quot; is null
-	at testCases.QALegendTestCases.addTickets(QALegendTestCases.java:300)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-... Removed 27 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m3">testCases.QALegendTestCases#applyLeave</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;pageClasses.QALegendHomePage.clickOnLeaveButton()&quot; because &quot;this.homePage&quot; is null
-	at testCases.QALegendTestCases.applyLeave(QALegendTestCases.java:195)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-... Removed 27 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+... Removed 19 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">testCases.QALegendTestCases#addAnnouncements</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">testCases.QALegendTestCases#addInvoice</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m3">testCases.QALegendTestCases#applyLeave</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Test2</h2><h3 id="m4">testCases.QALegendTestCases#addAnnouncements</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m5">testCases.QALegendTestCases#addInvoice</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m6">testCases.QALegendTestCases#addTickets</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m7">testCases.QALegendTestCases#applyLeave</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

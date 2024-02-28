@@ -1,152 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="4" passed="0" failed="4" skipped="0">
+<testng-results ignored="0" total="8" passed="7" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-02-20T20:00:29 IST" name="Suite" finished-at="2024-02-20T20:00:30 IST" duration-ms="430">
+  <suite started-at="2024-02-22T19:48:20 IST" name="Suite" finished-at="2024-02-22T19:49:25 IST" duration-ms="64818">
     <groups>
       <group name="smokeTest">
-        <method signature="QALegendTestCases.applyLeave()[pri:4, instance:testCases.QALegendTestCases@306e95ec]" name="applyLeave" class="testCases.QALegendTestCases"/>
-        <method signature="QALegendTestCases.addInvoice()[pri:6, instance:testCases.QALegendTestCases@306e95ec]" name="addInvoice" class="testCases.QALegendTestCases"/>
-        <method signature="QALegendTestCases.addAnnouncements()[pri:8, instance:testCases.QALegendTestCases@306e95ec]" name="addAnnouncements" class="testCases.QALegendTestCases"/>
-        <method signature="QALegendTestCases.addTickets()[pri:10, instance:testCases.QALegendTestCases@306e95ec]" name="addTickets" class="testCases.QALegendTestCases"/>
+        <method signature="QALegendTestCases.addAnnouncements()[pri:0, instance:testCases.QALegendTestCases@6fd83fc1]" name="addAnnouncements" class="testCases.QALegendTestCases"/>
+        <method signature="QALegendTestCases.addInvoice()[pri:0, instance:testCases.QALegendTestCases@6fd83fc1]" name="addInvoice" class="testCases.QALegendTestCases"/>
+        <method signature="QALegendTestCases.addTickets()[pri:0, instance:testCases.QALegendTestCases@6fd83fc1]" name="addTickets" class="testCases.QALegendTestCases"/>
+        <method signature="QALegendTestCases.applyLeave()[pri:0, instance:testCases.QALegendTestCases@6fd83fc1]" name="applyLeave" class="testCases.QALegendTestCases"/>
+        <method signature="QALegendTestCases.addAnnouncements()[pri:0, instance:testCases.QALegendTestCases@6221a451]" name="addAnnouncements" class="testCases.QALegendTestCases"/>
+        <method signature="QALegendTestCases.addInvoice()[pri:0, instance:testCases.QALegendTestCases@6221a451]" name="addInvoice" class="testCases.QALegendTestCases"/>
+        <method signature="QALegendTestCases.addTickets()[pri:0, instance:testCases.QALegendTestCases@6221a451]" name="addTickets" class="testCases.QALegendTestCases"/>
+        <method signature="QALegendTestCases.applyLeave()[pri:0, instance:testCases.QALegendTestCases@6221a451]" name="applyLeave" class="testCases.QALegendTestCases"/>
       </group> <!-- smokeTest -->
     </groups>
-    <test started-at="2024-02-20T20:00:29 IST" name="Test" finished-at="2024-02-20T20:00:30 IST" duration-ms="430">
+    <test started-at="2024-02-22T19:48:20 IST" name="Test1" finished-at="2024-02-22T19:49:22 IST" duration-ms="62585">
       <class name="testCases.QALegendTestCases">
-        <test-method signature="applyLeave()[pri:4, instance:testCases.QALegendTestCases@306e95ec]" started-at="2024-02-20T20:00:29 IST" name="applyLeave" finished-at="2024-02-20T20:00:30 IST" duration-ms="50" status="FAIL">
-          <exception class="java.lang.NullPointerException">
-            <message>
-              <![CDATA[Cannot invoke "pageClasses.QALegendHomePage.clickOnLeaveButton()" because "this.homePage" is null]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException: Cannot invoke "pageClasses.QALegendHomePage.clickOnLeaveButton()" because "this.homePage" is null
-at testCases.QALegendTestCases.applyLeave(QALegendTestCases.java:195)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:848)
-at org.testng.TestRunner.run(TestRunner.java:621)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
-at org.testng.TestNG.runSuites(TestNG.java:1114)
-at org.testng.TestNG.run(TestNG.java:1082)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+        <test-method is-config="true" signature="initialization(java.lang.String)[pri:0, instance:testCases.QALegendTestCases@6fd83fc1]" started-at="2024-02-22T19:48:20 IST" name="initialization" finished-at="2024-02-22T19:48:31 IST" duration-ms="10836" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- applyLeave -->
-        <test-method signature="addInvoice()[pri:6, instance:testCases.QALegendTestCases@306e95ec]" started-at="2024-02-20T20:00:30 IST" name="addInvoice" finished-at="2024-02-20T20:00:30 IST" duration-ms="5" status="FAIL">
-          <exception class="java.lang.NullPointerException">
-            <message>
-              <![CDATA[Cannot invoke "pageClasses.QALegendHomePage.clickOnInvoiceButton()" because "this.homePage" is null]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException: Cannot invoke "pageClasses.QALegendHomePage.clickOnInvoiceButton()" because "this.homePage" is null
-at testCases.QALegendTestCases.addInvoice(QALegendTestCases.java:221)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:848)
-at org.testng.TestRunner.run(TestRunner.java:621)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
-at org.testng.TestNG.runSuites(TestNG.java:1114)
-at org.testng.TestNG.run(TestNG.java:1082)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addInvoice -->
-        <test-method signature="addAnnouncements()[pri:8, instance:testCases.QALegendTestCases@306e95ec]" started-at="2024-02-20T20:00:30 IST" name="addAnnouncements" finished-at="2024-02-20T20:00:30 IST" duration-ms="54" status="FAIL">
-          <exception class="java.lang.NullPointerException">
-            <message>
-              <![CDATA[Cannot invoke "pageClasses.QALegendHomePage.clickOnAnnouncementsButton()" because "this.homePage" is null]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException: Cannot invoke "pageClasses.QALegendHomePage.clickOnAnnouncementsButton()" because "this.homePage" is null
-at testCases.QALegendTestCases.addAnnouncements(QALegendTestCases.java:266)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:848)
-at org.testng.TestRunner.run(TestRunner.java:621)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
-at org.testng.TestNG.runSuites(TestNG.java:1114)
-at org.testng.TestNG.run(TestNG.java:1082)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+        </test-method> <!-- initialization -->
+        <test-method signature="addAnnouncements()[pri:0, instance:testCases.QALegendTestCases@6fd83fc1]" started-at="2024-02-22T19:48:31 IST" name="addAnnouncements" finished-at="2024-02-22T19:48:37 IST" duration-ms="6780" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- addAnnouncements -->
-        <test-method signature="addTickets()[pri:10, instance:testCases.QALegendTestCases@306e95ec]" started-at="2024-02-20T20:00:30 IST" name="addTickets" finished-at="2024-02-20T20:00:30 IST" duration-ms="6" status="FAIL">
-          <exception class="java.lang.NullPointerException">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.QALegendTestCases@6fd83fc1]" started-at="2024-02-22T19:48:37 IST" name="tearDown" finished-at="2024-02-22T19:48:38 IST" duration-ms="834" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="initialization(java.lang.String)[pri:0, instance:testCases.QALegendTestCases@6fd83fc1]" started-at="2024-02-22T19:48:38 IST" name="initialization" finished-at="2024-02-22T19:48:44 IST" duration-ms="5511" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method signature="addInvoice()[pri:0, instance:testCases.QALegendTestCases@6fd83fc1]" started-at="2024-02-22T19:48:44 IST" name="addInvoice" finished-at="2024-02-22T19:48:53 IST" duration-ms="8722" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addInvoice -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.QALegendTestCases@6fd83fc1]" started-at="2024-02-22T19:48:53 IST" name="tearDown" finished-at="2024-02-22T19:48:53 IST" duration-ms="430" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="initialization(java.lang.String)[pri:0, instance:testCases.QALegendTestCases@6fd83fc1]" started-at="2024-02-22T19:48:53 IST" name="initialization" finished-at="2024-02-22T19:49:00 IST" duration-ms="6610" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method signature="addTickets()[pri:0, instance:testCases.QALegendTestCases@6fd83fc1]" started-at="2024-02-22T19:49:00 IST" name="addTickets" finished-at="2024-02-22T19:49:08 IST" duration-ms="8669" status="FAIL">
+          <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[Cannot invoke "pageClasses.QALegendHomePage.clickOnTicketsButton()" because "this.homePage" is null]]>
+              <![CDATA[expected:<73> but was:<74>]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException: Cannot invoke "pageClasses.QALegendHomePage.clickOnTicketsButton()" because "this.homePage" is null
-at testCases.QALegendTestCases.addTickets(QALegendTestCases.java:300)
+              <![CDATA[java.lang.AssertionError: expected:<73> but was:<74>
+at org.testng.AssertJUnit.assertEquals(AssertJUnit.java:115)
+at org.testng.AssertJUnit.assertEquals(AssertJUnit.java:125)
+at testCases.QALegendTestCases.addTickets(QALegendTestCases.java:329)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -163,25 +92,122 @@ at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 at org.testng.TestRunner.privateRun(TestRunner.java:848)
 at org.testng.TestRunner.run(TestRunner.java:621)
 at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
-at org.testng.TestNG.runSuites(TestNG.java:1114)
-at org.testng.TestNG.run(TestNG.java:1082)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:481)
+at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:58)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+at java.base/java.lang.Thread.run(Thread.java:833)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- addTickets -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.QALegendTestCases@6fd83fc1]" started-at="2024-02-22T19:49:09 IST" name="tearDown" finished-at="2024-02-22T19:49:10 IST" duration-ms="960" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="initialization(java.lang.String)[pri:0, instance:testCases.QALegendTestCases@6fd83fc1]" started-at="2024-02-22T19:49:10 IST" name="initialization" finished-at="2024-02-22T19:49:17 IST" duration-ms="7407" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method signature="applyLeave()[pri:0, instance:testCases.QALegendTestCases@6fd83fc1]" started-at="2024-02-22T19:49:17 IST" name="applyLeave" finished-at="2024-02-22T19:49:22 IST" duration-ms="4832" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- applyLeave -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.QALegendTestCases@6fd83fc1]" started-at="2024-02-22T19:49:22 IST" name="tearDown" finished-at="2024-02-22T19:49:22 IST" duration-ms="354" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
       </class> <!-- testCases.QALegendTestCases -->
-    </test> <!-- Test -->
+    </test> <!-- Test1 -->
+    <test started-at="2024-02-22T19:48:20 IST" name="Test2" finished-at="2024-02-22T19:49:25 IST" duration-ms="64818">
+      <class name="testCases.QALegendTestCases">
+        <test-method is-config="true" signature="initialization(java.lang.String)[pri:0, instance:testCases.QALegendTestCases@6221a451]" started-at="2024-02-22T19:48:20 IST" name="initialization" finished-at="2024-02-22T19:48:31 IST" duration-ms="11387" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Edge]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method signature="addAnnouncements()[pri:0, instance:testCases.QALegendTestCases@6221a451]" started-at="2024-02-22T19:48:31 IST" name="addAnnouncements" finished-at="2024-02-22T19:48:38 IST" duration-ms="6661" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addAnnouncements -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.QALegendTestCases@6221a451]" started-at="2024-02-22T19:48:38 IST" name="tearDown" finished-at="2024-02-22T19:48:40 IST" duration-ms="1950" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="initialization(java.lang.String)[pri:0, instance:testCases.QALegendTestCases@6221a451]" started-at="2024-02-22T19:48:40 IST" name="initialization" finished-at="2024-02-22T19:48:48 IST" duration-ms="7815" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Edge]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method signature="addInvoice()[pri:0, instance:testCases.QALegendTestCases@6221a451]" started-at="2024-02-22T19:48:48 IST" name="addInvoice" finished-at="2024-02-22T19:48:54 IST" duration-ms="6440" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addInvoice -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.QALegendTestCases@6221a451]" started-at="2024-02-22T19:48:54 IST" name="tearDown" finished-at="2024-02-22T19:48:56 IST" duration-ms="2086" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="initialization(java.lang.String)[pri:0, instance:testCases.QALegendTestCases@6221a451]" started-at="2024-02-22T19:48:56 IST" name="initialization" finished-at="2024-02-22T19:49:03 IST" duration-ms="6498" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Edge]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method signature="addTickets()[pri:0, instance:testCases.QALegendTestCases@6221a451]" started-at="2024-02-22T19:49:03 IST" name="addTickets" finished-at="2024-02-22T19:49:10 IST" duration-ms="7788" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addTickets -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.QALegendTestCases@6221a451]" started-at="2024-02-22T19:49:10 IST" name="tearDown" finished-at="2024-02-22T19:49:12 IST" duration-ms="1803" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="initialization(java.lang.String)[pri:0, instance:testCases.QALegendTestCases@6221a451]" started-at="2024-02-22T19:49:12 IST" name="initialization" finished-at="2024-02-22T19:49:19 IST" duration-ms="6251" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Edge]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialization -->
+        <test-method signature="applyLeave()[pri:0, instance:testCases.QALegendTestCases@6221a451]" started-at="2024-02-22T19:49:19 IST" name="applyLeave" finished-at="2024-02-22T19:49:23 IST" duration-ms="4496" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- applyLeave -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:testCases.QALegendTestCases@6221a451]" started-at="2024-02-22T19:49:23 IST" name="tearDown" finished-at="2024-02-22T19:49:25 IST" duration-ms="1558" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- testCases.QALegendTestCases -->
+    </test> <!-- Test2 -->
   </suite> <!-- Suite -->
 </testng-results>

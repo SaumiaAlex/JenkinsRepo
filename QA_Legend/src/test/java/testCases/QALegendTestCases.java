@@ -1,5 +1,11 @@
 package testCases;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -30,7 +36,7 @@ import utilities.ExcelUtilities;
 public class QALegendTestCases extends BaseClass
 {
 	public WebDriver driver;
-	public final String excelFilePath = "//src//main//java//testData//testData_Excel.xlsx";
+	public final String excelFilePath = "/src/test/resources/testData/testData_Excel.xlsx";
 	 FileInputStream fis;
 	 Properties prop;
 	 QALegendLoginPage loginPage;
@@ -50,14 +56,14 @@ public class QALegendTestCases extends BaseClass
 	
 	
 	
-	@BeforeMethod
+	@BeforeMethod (alwaysRun=true)
 	@Parameters({"browser"})
 	public void initialization(String browser) throws Exception
 	{System.out.println("Before method");
 		driver = browserInitialization(browser);
 		
 		
-		fis = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\testData\\testData.properties");
+		fis = new FileInputStream(System.getProperty("user.dir")+"/src/test/resources/testData/testData.properties");
 		prop = new Properties();
 		loginPage = new QALegendLoginPage(driver);
 		homePage = new QALegendHomePage(driver);
@@ -84,7 +90,8 @@ public class QALegendTestCases extends BaseClass
 	}
 	
 	
-	//@AfterMethod
+	
+	@AfterMethod(alwaysRun=true)
 	public void tearDown()
 	{
 		driver.quit();
@@ -109,19 +116,20 @@ public class QALegendTestCases extends BaseClass
 		{
 			String expectedUserName = prop.getProperty("profileName");
 			String actulalUserName = homePage.getProfileName();
-			Assert.assertEquals(actulalUserName, expectedUserName);
+			AssertJUnit.assertEquals(actulalUserName, expectedUserName);
 		
 		}
 		else
 		{
 			String expectedHeading = prop.getProperty("signIn");
 			String actualHeading = loginPage.getTextFromLoginPage();
-			Assert.assertEquals(actualHeading, expectedHeading);
+			AssertJUnit.assertEquals(actualHeading, expectedHeading);
 
 		}
 		
 
 	}
+	@Test
 	@DataProvider (name="login_Details")
 	public Object[][] testData() throws IOException
 	{
@@ -149,7 +157,7 @@ public class QALegendTestCases extends BaseClass
 		notesPage.clickOnSave();
 		
 		String actualNotesTitle  = notesPage.getActualTitle();
-		Assert.assertEquals(actualNotesTitle, expectedNotesTitle);
+		AssertJUnit.assertEquals(actualNotesTitle, expectedNotesTitle);
 	}
 	@Test(groups= {"regression"})
 	public void clockInClockOut() throws IOException
@@ -182,11 +190,11 @@ public class QALegendTestCases extends BaseClass
 		System.out.println(actualStatus);
 		if(status.contains("Clocked out"))
 				{
-		Assert.assertTrue(actualStatus.contains("Not clocked in yet")&&expectedStatus.contains("You are currently clocked out"));
+		AssertJUnit.assertTrue(actualStatus.contains("Not clocked in yet")&&expectedStatus.contains("You are currently clocked out"));
 				}
 		else
 		{
-			Assert.assertTrue(actualStatus.contains(expectedStatus));
+			AssertJUnit.assertTrue(actualStatus.contains(expectedStatus));
 		}
 	}
 	@Test(groups= {"smokeTest"})
@@ -203,7 +211,7 @@ public class QALegendTestCases extends BaseClass
 		leavePage.clickOnAllfromDropdownToListAll();
 		String actualLeaveReason = leavePage.clickOnApplicationDetail();
 		
-		Assert.assertEquals(actualLeaveReason, expectedLeaveReason);
+		AssertJUnit.assertEquals(actualLeaveReason, expectedLeaveReason);
 		}
 	@Test(groups= {"regression"})
 	public void addTask() throws IOException 
@@ -213,7 +221,7 @@ public class QALegendTestCases extends BaseClass
 		String expectedTaskTitle = taskPage.addTextToTitleField(excelFilePath);
 		taskPage.addProjectFromDropDown();
 		String actualTaskTitle=taskPage.clickOnSaveAddTaskPopUp();
-		Assert.assertEquals(actualTaskTitle, expectedTaskTitle);
+		AssertJUnit.assertEquals(actualTaskTitle, expectedTaskTitle);
 	}
 	@Test(groups= {"smokeTest"})
 public void addInvoice() throws IOException
@@ -232,10 +240,10 @@ public void addInvoice() throws IOException
 	String actualClient = invoicePage.getActualClient();
 	String actualItemQuantity = invoicePage.getActualQuantity();
 	
-	Assert.assertEquals(actualClient, expectedClient);
+	AssertJUnit.assertEquals(actualClient, expectedClient);
 	//Assert.assertEquals(actualItemQuantity, expectedItemQuantity);
 	
-	Assert.assertTrue(actualItemQuantity.contains(expectedItemQuantity));
+	AssertJUnit.assertTrue(actualItemQuantity.contains(expectedItemQuantity));
 	
 	
 }
@@ -255,9 +263,9 @@ public void addInvoice() throws IOException
 		teamMembersPage.searchForTeamMember(expectedName);
 		
 		  String memberDetails[] = teamMembersPage.actualTeamMemberDetails();
-		  Assert.assertEquals(memberDetails[0], expectedName);
-		 Assert.assertEquals(memberDetails[1], expectedJobTitle);
-		  Assert.assertEquals(memberDetails[2], expectedEmail);
+		  AssertJUnit.assertEquals(memberDetails[0], expectedName);
+		 AssertJUnit.assertEquals(memberDetails[1], expectedJobTitle);
+		  AssertJUnit.assertEquals(memberDetails[2], expectedEmail);
 		 
 	}
 	@Test(groups= {"smokeTest"})
@@ -272,7 +280,7 @@ public void addInvoice() throws IOException
 		announcementsPage.goBackToAnnouncementsPage();
 		announcementsPage.searchForExpectedAnnouncement(expectedTitle);
 		String actualTitle = announcementsPage.getTextOfActualAnnouncementTitle();
-		Assert.assertEquals(actualTitle, expectedTitle);
+		AssertJUnit.assertEquals(actualTitle, expectedTitle);
 		
 	}
 	@Test(groups= {"regression"})
@@ -289,7 +297,7 @@ public void addInvoice() throws IOException
 		messagePage.clickOnTheMessageSentFromSentItems();
 		String actualSubject = messagePage.getActualSubject();
 		String actualMessage = messagePage.getActualMessage();
-		Assert.assertTrue(actualMessage.contains(expMessage)&&actualSubject.contains(expSubject));
+		AssertJUnit.assertTrue(actualMessage.contains(expMessage)&&actualSubject.contains(expSubject));
 		
 	}
 	@Test(groups= {"smokeTest"})
@@ -317,8 +325,8 @@ public void addInvoice() throws IOException
 		System.out.println("ticket no in homePage ="+ numberOfTicketsDisplayedInHomePage);
 		System.out.println("ticket no in ticketsPage ="+ numberOfActualNewTickets);
 		
-		Assert.assertTrue(actualTitle.contains(expectedTitle) && actualDescription.contains(expectedDescription));
-		Assert.assertEquals(numberOfActualNewTickets, numberOfTicketsDisplayedInHomePage);
+		AssertJUnit.assertTrue(actualTitle.contains(expectedTitle) && actualDescription.contains(expectedDescription));
+		AssertJUnit.assertEquals(numberOfActualNewTickets, numberOfTicketsDisplayedInHomePage);
 		
 		
 		
